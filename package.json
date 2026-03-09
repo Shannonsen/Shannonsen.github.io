@@ -1,8 +1,11 @@
 {
-  "name": "shannon-portfolio",
+  "name": "shannonsen.github.io",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "homepage": "https://shannonsen.github.io",
+  "description": "Portfolio personal de Shannon Sen Perdomo",
+  "author": "Shannon Sen Perdomo",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
