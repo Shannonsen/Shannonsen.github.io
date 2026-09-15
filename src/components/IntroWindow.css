@@ -6,9 +6,9 @@
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: rgba(20, 20, 20, 0.5);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  /* A flat wash, not a blur: blurring the 1px background grid smears it into moiré bands,
+     and blur is out of register with the rest of the identity anyway. */
+  background: rgba(20, 20, 20, 0.62);
   animation: intro-overlay-enter 320ms ease forwards;
 }
 

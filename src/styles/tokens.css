@@ -41,9 +41,9 @@
   --shadow-hard-lg: 8px 8px 0 var(--ink);
 
   /* Graph paper. Two scales: one alone reads as noise or as a plain box, two read as
-     engineering paper. Kept faint enough that text over it holds its contrast. */
-  --grid-minor: 28px;
-  --grid-major: 140px;
-  --grid-minor-ink: rgba(20, 20, 20, 0.06);
-  --grid-major-ink: rgba(20, 20, 20, 0.13);
+     engineering paper. The rules themselves are drawn in the SVG tile in index.css — a data
+     URI cannot read a custom property — so only the tile size lives here, and it must stay a
+     whole multiple of the minor step or the tile seam shows as a doubled rule. */
+  --grid-minor: 32px;
+  --grid-major: 128px;
 }

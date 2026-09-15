@@ -34,6 +34,11 @@
 - [x] 5.3 `App.css` + `index.css`: header, footer and global styles onto tokens.
 - [x] 5.4 Remove the indigo/purple gradient everywhere it survives.
 
+## 7. Grid rendering (review feedback)
+
+- [x] 7.1 Redraw the graph paper as a crisp SVG tile instead of stacked gradient hard stops.
+- [x] 7.2 Drop the intro overlay's backdrop blur, which was turning the 1px rules into moiré.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.

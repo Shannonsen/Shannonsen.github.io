@@ -43,10 +43,19 @@ green to yellow is a one-line change and stays consistent between pill and badge
 for the intro window. Pressed states translate by the offset and drop the shadow, so a button
 physically sinks onto the page — the Bauhaus equivalent of a hover lift.
 
-**Graph paper with two grid scales.** Four repeating linear gradients: minor rules every 28px
-at 6% ink, major rules every 140px at 13%. One scale alone reads as either noise or as a plain
-box; two reads as engineering paper. The opacities are kept low enough that body text over the
-grid retains its contrast.
+**Graph paper drawn as an SVG tile, not as gradients.** Two scales — minor rules every 32px at
+5% ink, a major rule every 128px at 11% — because one scale alone reads as either noise or as a
+plain box. The first attempt stacked four `linear-gradient`s with hard stops
+(`colour 1px, transparent 1px`); those stops get antialiased, so on a fractional device pixel
+ratio some rules land crisp and others land soft and the grid reads as badly made. The tile is
+now an SVG of exact 1px `rect`s with `shape-rendering='crispEdges'`, which snaps every rule to
+device pixels. `rect`, not `line`: a 1px stroke centred on x=32 straddles 31.5-32.5 and blurs no
+matter what. Cost: the ink is baked into the data URI, since it cannot read a custom property.
+The tile size must stay a whole multiple of the minor step or the seam shows as a doubled rule.
+
+**No blur over the grid.** The intro overlay's `backdrop-filter: blur()` smeared the 1px rules
+into moiré — bands and phantom lines that are not in the background at all. It is replaced by a
+flat ink wash, which is also the only treatment consistent with a flat graphic language.
 
 **Cards stay opaque.** The grid is a ground, not a texture for the content to sit in. Cards
 fill with paper-white so text never competes with rules underneath.
