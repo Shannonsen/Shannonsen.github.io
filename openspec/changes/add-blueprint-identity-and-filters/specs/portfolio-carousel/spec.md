@@ -51,11 +51,12 @@ slides receding in 3D, and SHALL do so without drawing a frame around any slide.
 - **THEN** it has no rule and no shadow of its own
 - **AND** its depth is conveyed only by rotation, scale, blur and opacity
 
-#### Scenario: The slide is a sheet of paper
+#### Scenario: The slide has no surface of its own
 
 - **WHEN** a slide is rendered on the slate
-- **THEN** it carries a solid bone fill, reading as a sheet laid on the drawing table
-- **AND** that is what gives the slide its edge, since it has no rule
+- **THEN** it has no fill, and the grid runs unbroken behind its content
+- **AND** its text therefore meets AA against the ground *as lightened by a grid rule*, not
+  only against bare slate
 
 #### Scenario: Rotation direction
 

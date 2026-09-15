@@ -19,10 +19,13 @@
   --blueprint: #0f2c52;
   --orange: #ff7a2f;
 
-  /* Type on the slate, with measured contrast */
-  --on-slate-strong: #f4f1e8; /* 17.21:1 */
-  --on-slate-body: #b9b6ae; /*    9.59:1 */
-  --on-slate-muted: #948f85; /*   6.04:1 */
+  /* Type on the slate. The slides are transparent, so slate type sits directly on the grid and
+     the number that matters is the one over a major rule, not over bare slate — a major rule
+     lifts the local background to about #2c2c2c. Both figures below: bare slate, then over a
+     rule. The muted tint is set by the second one. */
+  --on-slate-strong: #f4f1e8; /* 17.21:1 · 12.37:1 */
+  --on-slate-body: #b9b6ae; /*    9.59:1 ·  6.89:1 */
+  --on-slate-muted: #a29d93; /*   7.20:1 ·  5.17:1 */
 
   /* Type on paper, with measured contrast */
   --on-paper-strong: #0f2c52; /* 12.38:1 */
@@ -38,7 +41,6 @@
   --rule: 2px;
   --rule-thick: 3px;
   --radius: 2px;
-  --radius-card: 6px;
 
   /* Graph paper. Two scales: one alone reads as either noise or a plain box, two read as
      drafting paper. The rules are drawn in the SVG tile in index.css — a data URI cannot read

@@ -91,7 +91,8 @@
 - [x] 14.1 Invert the ground to a near-black slate with white grid rules.
 - [x] 14.2 Split the type scale in two, `--on-slate-*` and `--on-paper-*`, named for their
       ground so neither can be used against the wrong one by accident.
-- [x] 14.3 Make the carousel slides solid bone sheets, separating at 17.21:1.
+- [x] 14.3 Leave the carousel slides transparent so the grid runs behind them, and re-derive
+      every slate tint against the ground as lightened by a major rule rather than bare slate.
 - [x] 14.4 Let orange be type on the slate, and take the hairline off orange fills there.
 - [x] 14.5 Check no component uses one ground's type scale against the other.
 

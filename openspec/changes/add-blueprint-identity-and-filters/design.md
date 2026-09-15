@@ -168,11 +168,11 @@ scrolled a little, whatever the content.
   is invisible from either side on its own.
 - **The bleed is finite.** Beyond a ~6400px viewport the grid would stop short. Raising
   `--grid-bleed` is safe only in multiples of the major step.
-- **Header and footer type sits directly on the grid**, which is at 6%/13% white on the slate.
-  Raising the grid strength erodes their contrast directly. Card text is now protected by the
-  sheet.
-- **`--on-paper-muted` sits on the AA floor** at 4.54:1. It has no headroom: darkening the paper
-  or lightening that tint drops it below.
+- **All slate type sits directly on the grid**, so the grid's opacity is a contrast input, not
+  only a visual choice. Raising the major rule above 13% pushes `--on-slate-muted` back under
+  AA. The token comments record both figures for exactly this reason.
+- **`--on-paper-muted` sits on the AA floor** at 4.54:1. It has no headroom. The paper scale is
+  now used only by the intro window, so that is where it matters.
 - **Two type scales is two chances to reach for the wrong one.** The names carry the ground, and
   a check confirms neither scale is used against the other, but nothing enforces it at build
   time.

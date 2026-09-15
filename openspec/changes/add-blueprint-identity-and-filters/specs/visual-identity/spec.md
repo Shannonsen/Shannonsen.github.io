@@ -109,5 +109,6 @@ Text SHALL stay legible against the palette.
 
 #### Scenario: Text over the grid
 
-- **WHEN** text sits directly on the ground, over the grid rules
-- **THEN** it meets AA against the ground, and the grid is faint enough not to erode it
+- **WHEN** text sits directly on the ground, where a grid rule may pass beneath it
+- **THEN** it meets AA against the ground *as lightened by a major rule*, which is the worst
+  case, not against the bare ground
