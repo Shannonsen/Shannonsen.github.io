@@ -171,6 +171,8 @@ scrolled a little, whatever the content.
 - **All slate type sits directly on the grid**, so the grid's opacity is a contrast input, not
   only a visual choice. Raising the major rule above 13% pushes `--on-slate-muted` back under
   AA. The token comments record both figures for exactly this reason.
+- **The chip alpha is a contrast input.** Raising `--tag-fill` past about 0.18 drops its own
+  label under AA over a grid rule. The cap is recorded in the token comment.
 - **`--on-paper-muted` sits on the AA floor** at 4.54:1. It has no headroom. The paper scale is
   now used only by the intro window, so that is where it matters.
 - **Two type scales is two chances to reach for the wrong one.** The names carry the ground, and

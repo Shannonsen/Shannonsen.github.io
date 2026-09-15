@@ -103,6 +103,12 @@
 - [x] 15.2 Split the accents by job: blue classifies, orange navigates.
 - [x] 15.3 Confirm nothing relies on telling blue from orange, since they differ only in hue.
 
+## 16. Technology chips
+
+- [x] 16.1 Make the technology chips circular with a translucent blue fill, capped at the alpha
+      where their own label would fall under AA over a grid rule.
+- [x] 16.2 Leave the filter pills untouched.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.

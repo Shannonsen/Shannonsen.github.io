@@ -44,6 +44,12 @@
 
   /* Rules, one per ground */
   --rule-slate: rgba(244, 241, 232, 0.18);
+  /* The technology chips. A translucent blue rather than a solid one, so the grid still shows
+     through them. The alpha is capped low on purpose: the fill lightens the local background,
+     and by 0.24 even body type falls under AA over a grid rule. Blue type on top is out
+     entirely — it never clears 4.68:1. The blue reads through the border, not the fill. */
+  --tag-fill: rgba(111, 168, 220, 0.16);
+  --tag-rule: rgba(111, 168, 220, 0.42);
   --rule-paper: rgba(15, 44, 82, 0.2);
   --rule: 2px;
   --rule-thick: 3px;

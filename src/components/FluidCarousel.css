@@ -152,9 +152,9 @@
 
 .fluid-carousel__tag {
   padding: 0.25rem 0.6rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--rule-slate);
-  background: transparent;
+  border-radius: 999px;
+  border: 1px solid var(--tag-rule);
+  background: var(--tag-fill);
   color: var(--on-slate-body);
   font-size: 0.82rem;
   font-weight: 500;
