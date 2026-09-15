@@ -1,37 +1,46 @@
+import { useState } from 'react'
 import { NameCarousel } from './components/NameCarousel'
+import { IntroWindow } from './components/IntroWindow'
+import { profile } from './data/profile'
 import { Div, Heading, Text } from '@hopper-ui/components'
 import './App.css'
 
 function App() {
+  const [isIntroOpen, setIsIntroOpen] = useState(true)
+
   return (
-    <Div className="app-container">
-      <header className="app-header">
-        <Heading size="2xl" className="welcome-title">
-          Welcome to my Portfolio
-        </Heading>
-        <Text className="subtitle">
-          Desarrollador apasionado por crear experiencias digitales excepcionales
-        </Text>
-      </header>
+    <>
+      {isIntroOpen && <IntroWindow onDismiss={() => setIsIntroOpen(false)} />}
 
-      <main className="main-content">
-        <NameCarousel />
-        
-        <Div className="info-section">
-          <Heading size="lg">About Me</Heading>
-          <Text>
-            Soy Shannon Sen Perdomo, un desarrollador enfocado en crear
-            soluciones tecnológicas innovadoras y de alta calidad.
+      <Div
+        className={`app-container${isIntroOpen ? ' is-behind-intro' : ''}`}
+        aria-hidden={isIntroOpen || undefined}
+      >
+        <header className="app-header">
+          <Heading size="2xl" className="welcome-title">
+            Welcome to my Portfolio
+          </Heading>
+          <Text className="subtitle">
+            Software engineer passionate about building exceptional digital experiences
           </Text>
-        </Div>
-      </main>
+        </header>
 
-      <footer className="app-footer">
-        <Text size="sm">
-          © 2026 Shannon Sen Perdomo. Built with React, TypeScript & Hopper.
-        </Text>
-      </footer>
-    </Div>
+        <main className="main-content">
+          <NameCarousel />
+
+          <Div className="info-section">
+            <Heading size="lg">About Me</Heading>
+            <Text>{profile.bio}</Text>
+          </Div>
+        </main>
+
+        <footer className="app-footer">
+          <Text size="sm">
+            © 2026 {profile.name}. Built with React, TypeScript &amp; Hopper.
+          </Text>
+        </footer>
+      </Div>
+    </>
   )
 }
 
