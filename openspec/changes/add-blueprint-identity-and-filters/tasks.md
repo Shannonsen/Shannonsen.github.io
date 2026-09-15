@@ -96,6 +96,13 @@
 - [x] 14.4 Let orange be type on the slate, and take the hairline off orange fills there.
 - [x] 14.5 Check no component uses one ground's type scale against the other.
 
+## 15. A second accent
+
+- [x] 15.1 Add a slate-ground blue, chosen on its contrast over a major rule rather than over
+      bare slate.
+- [x] 15.2 Split the accents by job: blue classifies, orange navigates.
+- [x] 15.3 Confirm nothing relies on telling blue from orange, since they differ only in hue.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.

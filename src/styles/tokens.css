@@ -16,8 +16,14 @@
   --paper-raised: #fffdf7;
   --paper-shade: #ece8dc;
 
-  --blueprint: #0f2c52;
-  --orange: #ff7a2f;
+  /* The navy only works on paper: on the slate it is 1.39:1. The slate gets its own blue.
+     The two accents divide by job rather than by taste — blue classifies (what a thing is),
+     orange navigates (where you are and what responds). They are never the only difference
+     between two adjacent elements, because they sit at nearly the same lightness (1.03) and
+     would be told apart by hue alone. */
+  --blueprint: #0f2c52; /* on paper only */
+  --blue: #6fa8dc; /*      7.69:1 · 5.53:1 over a rule */
+  --orange: #ff7a2f; /*    7.48:1 · 5.37:1 over a rule */
 
   /* Type on the slate. The slides are transparent, so slate type sits directly on the grid and
      the number that matters is the one over a major rule, not over bare slate — a major rule
@@ -32,8 +38,9 @@
   --on-paper-body: #2b4468; /*    8.73:1 */
   --on-paper-muted: #54708f; /*   4.54:1, at the AA floor */
 
-  /* Laid over an orange fill, on either ground. */
+  /* Laid over an accent fill. */
   --on-orange: var(--blueprint); /* 5.38:1 */
+  --on-blue: var(--slate); /*        7.69:1 */
 
   /* Rules, one per ground */
   --rule-slate: rgba(244, 241, 232, 0.18);

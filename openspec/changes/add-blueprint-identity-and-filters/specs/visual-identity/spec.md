@@ -14,8 +14,8 @@ exposed as design tokens.
 #### Scenario: Palette tokens exist
 
 - **WHEN** a component needs a colour
-- **THEN** it reads a token for the slate, for paper, for orange, or for a type tint belonging
-  to one of the two grounds
+- **THEN** it reads a token for the slate, for paper, for blue, for orange, or for a type tint
+  belonging to one of the two grounds
 - **AND** it does not introduce a colour outside that set
 
 #### Scenario: Each ground has its own type scale
@@ -25,6 +25,27 @@ exposed as design tokens.
 - **WHEN** text is set on a paper sheet
 - **THEN** it uses a blue tint from the paper scale
 - **AND** neither scale is ever used against the other ground
+
+#### Scenario: The two accents divide by job
+
+- **WHEN** an element classifies content — a section badge, a filter pill's selected state
+- **THEN** it uses blue
+- **WHEN** an element reports navigation or responds to the visitor — progress, the current
+  slide, a hover, a link
+- **THEN** it uses orange
+
+#### Scenario: The accents are never the only difference
+
+- **WHEN** blue and orange elements appear near each other
+- **THEN** neither depends on being told apart from the other to be understood, since the two
+  sit at nearly the same lightness and differ by hue alone
+
+#### Scenario: Blue belongs to its ground
+
+- **WHEN** blue is used on the slate
+- **THEN** the light blue is used, the navy being 1.39:1 there
+- **WHEN** blue is used on paper
+- **THEN** the navy is used
 
 #### Scenario: Orange as type
 

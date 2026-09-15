@@ -88,8 +88,8 @@
 .fluid-carousel__badge.is-skills,
 .fluid-carousel__badge.is-experience,
 .fluid-carousel__badge.is-project {
-  background-color: var(--orange);
-  color: var(--on-orange);
+  background-color: var(--blue);
+  color: var(--on-blue);
 }
 
 .fluid-carousel__title {
@@ -112,7 +112,7 @@
 .fluid-carousel__company {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--orange);
+  color: var(--blue);
   margin: 0.35rem 0 0;
 }
 

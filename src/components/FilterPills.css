@@ -31,9 +31,9 @@
 /* Colour alone does not carry the state: the active pill is also the only one whose rule
    matches its fill, so it reads as a solid object rather than an outline. */
 .filter-pill.is-active {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: var(--on-orange);
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--on-blue);
 }
 
 .filter-pill.is-active.is-all {
