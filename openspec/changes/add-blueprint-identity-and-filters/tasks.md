@@ -117,6 +117,12 @@
 - [x] 17.3 Re-verify every pair against the worst case, including text inside a chip and text
       on the intro window's raised sheet.
 
+## 18. Neutral type
+
+- [x] 18.1 Move all type to neutrals; reserve the green scale for fills, rules and accents.
+- [x] 18.2 Set the ground tints on the stacked worst case — chip over grid rule over ground.
+- [x] 18.3 Confirm no green remains as a text colour, hover states included.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.

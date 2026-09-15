@@ -14,9 +14,9 @@ exposed as design tokens.
 #### Scenario: Palette tokens exist
 
 - **WHEN** a component needs a colour
-- **THEN** it reads a token from the green scale: the ground, a sheet, sage, mint, or a type
-  tint belonging to one of the two grounds
-- **AND** it does not introduce a colour outside that scale
+- **THEN** it reads a token: a step of the green scale for a fill, rule or accent, or a neutral
+  from the type scale belonging to one of the two grounds
+- **AND** it does not introduce a colour outside those sets
 
 #### Scenario: Each ground has its own type scale
 
@@ -40,10 +40,12 @@ exposed as design tokens.
 - **THEN** they are distinguishable by lightness alone, so telling them apart does not depend
   on colour vision
 
-#### Scenario: A step that cannot be type is not used as type
+#### Scenario: The scale does not set type
 
-- **WHEN** a step of the scale is too dark to meet AA on the ground
-- **THEN** it is used only as a sheet type tint or as a rule, never as type on the ground
+- **WHEN** text is rendered anywhere on the site
+- **THEN** its colour is a neutral from that ground's type scale, never a step of the green
+  scale
+- **AND** the green scale appears only as fills, rules, borders and accents
 
 #### Scenario: No gradients in the identity
 

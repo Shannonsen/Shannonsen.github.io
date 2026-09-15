@@ -54,15 +54,16 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
   font-weight: 600;
-  color: var(--mint);
+  color: var(--on-ground-strong);
   text-decoration: underline;
+  text-decoration-color: var(--sage);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: color 160ms ease;
 }
 
 a:hover {
-  color: var(--on-ground-strong);
+  text-decoration-color: var(--on-ground-strong);
   text-decoration-thickness: 2px;
 }
 

@@ -176,6 +176,9 @@ scrolled a little, whatever the content.
 - **A monochrome scale has no spare hue.** If a future state needs to be distinguished from
   sage or mint, it has to be found in value or in shape, because there is no third hue to
   reach for.
+- **Three transparent layers stack onto the tightest contrast case.** Chip over rule over
+  ground. Any new translucent surface adds a fourth and has to be measured through the whole
+  stack, not against the ground.
 - **The sheet scale is used only by the intro window** now that the slides are transparent, so
   that is the only place its tiers matter.
 - **Two type scales is two chances to reach for the wrong one.** The names carry the ground, and

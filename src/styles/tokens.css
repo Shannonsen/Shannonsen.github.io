@@ -2,11 +2,10 @@
  * Design tokens. Every colour and measure in the site comes from here — components never
  * hard-code a value, so recolouring is a one-file change.
  *
- * The palette is a five-step green scale, and each step has exactly one job. Two of the five
- * cannot be text on the ground at all (#1f2420 is 1.25:1, #3f5a48 is 2.61:1), so they earn
- * their place as the sheet's darker type and as rules instead. A sixth tone, --sage-deep, is
- * derived between #3f5a48 and #8fb996 because the scale as given has only two tones legible on
- * the ground and the type hierarchy needs three.
+ * The palette is a five-step green scale, and it is reserved for accents, surfaces and rules —
+ * never for type. Text is neutral, because type tinted with the accent colour competes with the
+ * accent instead of supporting it. Of the five steps, two cannot be text on the ground anyway
+ * (#1f2420 is 1.25:1, #3f5a48 is 2.61:1).
  *
  * The site has two grounds: the near-black ground the page lies on, and the pale sheets laid
  * on it. Each has its own type scale, named for its ground so a tint cannot be used against
@@ -21,17 +20,20 @@
   --sheet-raised: #f2f8f3;
   --sheet-shade: #d8e8db;
 
-  /* Type on the ground. The slides are transparent, so this type sits directly on the grid and
-     the figure that governs is the one over a major rule, which lifts the local background to
-     about #272828 — not the one over bare ground. Both are given: bare, then over a rule. */
-  --on-ground-strong: #e6f2e8; /* 17.18:1 · 12.83:1 */
-  --on-ground-body: #8fb996; /*     9.00:1 ·  6.72:1 */
-  --on-ground-muted: #779e81; /*    6.59:1 ·  4.92:1 — derived; the scale had no third tone */
+  /* Type on the ground is neutral, not green: the scale is for accents, and text tinted with
+     the accent competes with it. These greys are outside the five-step scale on purpose.
 
-  /* Type on a sheet. This is where the two darkest steps of the scale do their work. */
+     The slides are transparent, so this type sits directly on the grid, and some of it sits
+     inside a translucent chip on top of that — which is the tightest case of the three, not
+     the bare ground. All three figures are given: bare, over a major rule, inside a chip. */
+  --on-ground-strong: #ffffff; /* 19.79:1 · 14.78:1 · 11.00:1 */
+  --on-ground-body: #d6d7d9; /*   13.74:1 · 10.27:1 ·  7.64:1 */
+  --on-ground-muted: #a8a9ac; /*   8.42:1 ·  6.29:1 ·  4.68:1 — the chip case sets this one */
+
+  /* Type on a sheet. Also neutral, for the same reason. */
   --on-sheet-strong: #0a0a0b; /* 17.18:1 */
   --on-sheet-body: #1f2420; /*   13.69:1 */
-  --on-sheet-muted: #3f5a48; /*   6.59:1 */
+  --on-sheet-muted: #5a5d5f; /*   5.76:1 */
 
   /* Laid over an accent fill. */
   --on-sage: var(--ground); /*  9.00:1 */
@@ -50,7 +52,7 @@
 
   /* Rules, one per ground */
   --rule-ground: rgba(230, 242, 232, 0.18);
-  --rule-sheet: rgba(31, 36, 32, 0.2);
+  --rule-sheet: rgba(63, 90, 72, 0.32); /* #3f5a48, the step that cannot be type anywhere */
   --rule: 2px;
   --rule-thick: 3px;
   --radius: 2px;
@@ -58,7 +60,8 @@
   /* Graph paper. Two scales: one alone reads as either noise or a plain box, two read as
      drafting paper. The rules are drawn in the SVG tile in App.css — a data URI cannot read a
      custom property — so only the tile size lives here. Their opacity is a contrast input, not
-     just a visual choice: raising the major rule past 13% pushes --on-ground-muted under AA.
+     just a visual choice. 13% is already the ceiling: at 16% the muted tint inside a chip
+     falls to 4.28:1 and misses AA. The chip is the binding case, not the bare ground.
 
      The column, its gutter and the carousel are all whole multiples of the major step, which
      is what makes every structural edge land on a rule with no offset maths:
