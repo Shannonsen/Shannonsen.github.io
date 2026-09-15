@@ -61,7 +61,9 @@
   min-height: 380px;
   display: flex;
   flex-direction: column;
-  padding: 1rem 1.5rem;
+  padding: 1.25rem 1.75rem;
+  background: var(--card-fill);
+  border-radius: var(--radius-card);
   will-change: transform, opacity, filter;
   backface-visibility: hidden;
 }

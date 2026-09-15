@@ -80,6 +80,12 @@
 - [x] 12.1 Remove `overflow: hidden` from `#root`, which cropped the bleeding grid layer back
       to the content column. The scroll lock lives on `body` and was always sufficient.
 
+## 13. Card surface
+
+- [x] 13.1 Give the carousel slides a soft translucent fill that mutes the grid beneath rather
+      than hiding it, keeping them frameless.
+- [x] 13.2 Verify the fill does not erode type contrast — it improves it at every tint.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.

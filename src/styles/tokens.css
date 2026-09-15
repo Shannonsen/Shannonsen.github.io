@@ -29,6 +29,13 @@
   --on-orange: var(--blueprint);
 
   /* Rules */
+  /* The carousel card's surface. Deliberately translucent: at 65% it mutes the grid beneath
+     the card instead of hiding it, which is what gives the card an edge without drawing one —
+     the slides stay frameless. It also lifts the effective background under card text, taking
+     --type-muted from 4.54:1 to 4.91:1. */
+  --card-fill: rgba(255, 253, 247, 0.65);
+  --radius-card: 6px;
+
   --rule: 2px;
   --rule-thick: 3px;
   --radius: 2px;

@@ -48,8 +48,14 @@ slides receding in 3D, and SHALL do so without drawing a frame around any slide.
 #### Scenario: No slide frame
 
 - **WHEN** any slide is rendered
-- **THEN** it has no fill, no rule and no shadow of its own
+- **THEN** it has no rule and no shadow of its own
 - **AND** its depth is conveyed only by rotation, scale, blur and opacity
+
+#### Scenario: The slide's surface is translucent
+
+- **WHEN** a slide is rendered over the page grid
+- **THEN** it carries a soft translucent fill that mutes the grid beneath it without hiding it
+- **AND** that muting is what gives the slide its edge, since it has no rule
 
 #### Scenario: Rotation direction
 
