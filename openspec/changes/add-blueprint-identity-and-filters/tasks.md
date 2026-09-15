@@ -49,6 +49,13 @@
 - [x] 8.5 Add a continuous progress rail alongside the dots.
 - [x] 8.6 Restyle the intro window, pills and controls for the blueprint.
 
+## 9. Bone ground (review feedback)
+
+- [x] 9.1 Invert the ground to bone with blue grid rules; move the type scale to blue tints.
+- [x] 9.2 Give every orange fill a blue hairline, and move thin indicators to blue.
+- [x] 9.3 Remove orange from all type, including links, where it is 2.30:1 on bone.
+- [x] 9.4 Give the intro window a rule and shadow so it reads against a bone page.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.

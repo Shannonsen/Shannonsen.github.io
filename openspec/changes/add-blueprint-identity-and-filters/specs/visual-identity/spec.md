@@ -1,8 +1,8 @@
 ## Purpose
 
-The visual identity is the blueprint the whole portfolio is drawn on: a deep blue ground
-carrying a drafting grid, type set in tints of bone, and orange reserved for accent. It is the
-language every component draws from.
+The visual identity is a drafting sheet: a bone ground carrying a blue drafting grid, type set
+in tints of the blueprint blue, and orange reserved for fills. It is the language every
+component draws from.
 
 ## ADDED Requirements
 
@@ -14,15 +14,21 @@ exposed as design tokens.
 #### Scenario: Palette tokens exist
 
 - **WHEN** a component needs a colour
-- **THEN** it reads a token for the blueprint ground, for orange, or for a bone type tint
+- **THEN** it reads a token for a bone ground tint, for orange, or for a blue type tint
 - **AND** it does not introduce a colour outside that set
 
 #### Scenario: The two colours divide the work
 
-- **WHEN** something needs to be set as type on the ground
-- **THEN** a bone tint is used, never orange, whose hue vibrates at text sizes
-- **WHEN** something needs to be filled or pointed at
+- **WHEN** something needs to be set as type, or drawn as a hairline, rule or thin indicator
+- **THEN** a blue tint is used, never orange
+- **WHEN** something needs to be filled
 - **THEN** orange is used, with the blueprint blue laid over it
+
+#### Scenario: An orange fill is given an edge
+
+- **WHEN** orange is used as a fill on the bone ground
+- **THEN** it carries a blue hairline, because orange against bone is 2.30:1 and its edges
+  would otherwise dissolve into the page
 
 #### Scenario: No gradients in the identity
 
@@ -49,14 +55,14 @@ Surfaces SHALL be drawn with hairline rules at low alpha rather than as bordered
 - **THEN** its rule is a bone hairline at low alpha, or it has no rule at all
 - **AND** it carries no hard offset shadow
 
-### Requirement: Blueprint ground
+### Requirement: Drafting ground
 
-The page SHALL sit on a deep blue ground carrying a drafting grid.
+The page SHALL sit on a bone ground carrying a drafting grid.
 
 #### Scenario: Background rendering
 
 - **WHEN** the page is displayed
-- **THEN** the background is the blueprint blue with a repeating grid of thin light rules
+- **THEN** the background is bone with a repeating grid of thin blue rules
 - **AND** the grid distinguishes minor cells from heavier major cells
 - **AND** the grid never reduces the contrast of text placed over it
 

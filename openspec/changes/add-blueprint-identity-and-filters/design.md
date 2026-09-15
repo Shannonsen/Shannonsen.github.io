@@ -84,17 +84,30 @@ type, orange only ever fills. That removes the two-token problem the previous pa
 orange is legible *directly on* the blue (5.38:1). The others range from 3.57 down to 1.31, so
 the two colours could never touch. On a blueprint ground they touch constantly.
 
-**Blueprint, because the grid was already there.** The graph paper predates this palette. A deep
-blue ground turns it from decoration into the subject: the page becomes a drafting sheet. The
-grid inverts to light rules on blue at 7%/16%.
+**Bone ground, blue grid.** The graph paper predates this palette, and drawing its rules in the
+blueprint blue rather than black is what makes the page read as a drafting sheet rather than as
+lined paper. Rules sit at 7%/15%.
+
+**The orange needs a hairline, because on bone it cannot serve two masters.** On a blue ground
+one number did two jobs: the ground and the type over the orange were the same blue, so 5.38:1
+covered both the fill's edge and its label. On bone those become two opposing pulls — measured
+across five oranges, the crossover where both are equal lands at about 3.5/3.5, under AA either
+way. Lightening the orange so blue type reads on it (5.38:1) leaves it at 2.30:1 against bone;
+darkening it for definition drops the label below AA. So the colour is not asked to do both: the
+orange stays light and every orange fill carries a 1px blue hairline, which supplies the edge at
+12.38:1. The corollary is that anything *thin* — the progress rail, rules, the focus ring — is
+blue rather than orange, since a hairline of orange on bone would barely register. Orange never
+sets type at all.
 
 ## Risks / Trade-offs
 
-- **Frameless type sits directly on the grid.** The grid is at 7%/16% white, faint enough that
-  body copy at 8.95:1 holds, but any increase in grid strength erodes text contrast directly —
-  there is no card fill to protect it any more.
-- **A dark ground is a commitment.** The palette is defined against the blueprint; going back
-  to a light page is a rewrite, not a token swap.
+- **Frameless type sits directly on the grid.** The grid is at 7%/15%, faint enough that body
+  copy at 8.73:1 holds, but any increase in grid strength erodes text contrast directly — there
+  is no card fill to protect it any more.
+- **`--type-muted` sits on the AA floor** at 4.54:1. It has no headroom: darkening the bone or
+  lightening that tint drops it below.
+- **Orange is now confined to fills.** That is a real constraint on future work, not a passing
+  preference — anything that wants to be orange and thin has to become a fill or become blue.
 - **Contrast measured, not eyeballed.** Every palette colour was checked against paper and ink.
   Yellow (1.65:1 against paper) is only ever a fill under ink. The orange needed two tokens.
   Adding a colour to the palette means repeating that check.

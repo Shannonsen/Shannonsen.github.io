@@ -32,14 +32,14 @@
    matches its fill, so it reads as a solid object rather than an outline. */
 .filter-pill.is-active {
   background: var(--orange);
-  border-color: var(--orange);
+  border-color: var(--blueprint);
   color: var(--on-orange);
 }
 
 .filter-pill.is-active.is-all {
   background: var(--type-strong);
   border-color: var(--type-strong);
-  color: var(--blueprint);
+  color: var(--bone);
 }
 
 @media (max-width: 480px) {

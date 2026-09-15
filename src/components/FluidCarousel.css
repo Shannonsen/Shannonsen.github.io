@@ -6,7 +6,7 @@
 }
 
 .fluid-carousel:focus-visible {
-  outline: var(--rule-thick) solid var(--orange);
+  outline: var(--rule-thick) solid var(--type-strong);
   outline-offset: 8px;
   border-radius: var(--radius);
 }
@@ -90,6 +90,7 @@
 .fluid-carousel__badge.is-project {
   background-color: var(--orange);
   color: var(--on-orange);
+  border: 1px solid var(--blueprint);
 }
 
 .fluid-carousel__title {
@@ -112,7 +113,7 @@
 .fluid-carousel__company {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--orange);
+  color: var(--type-strong);
   margin: 0.35rem 0 0;
 }
 
@@ -166,7 +167,7 @@
   gap: 0.35rem;
   margin-top: auto;
   padding-top: 1.25rem;
-  color: var(--orange);
+  color: var(--type-strong);
   font-weight: 700;
   font-size: 0.92rem;
 }
@@ -204,7 +205,7 @@
 
 .fluid-carousel__arrow:hover {
   background: var(--orange);
-  border-color: var(--orange);
+  border-color: var(--blueprint);
   color: var(--on-orange);
 }
 
@@ -218,7 +219,7 @@
 
 .fluid-carousel__rail-fill {
   height: 100%;
-  background: var(--orange);
+  background: var(--type-strong);
   transform-origin: left center;
   transform: scaleX(0);
 }
@@ -248,7 +249,7 @@
 
 .fluid-carousel__dot.is-selected {
   width: 26px;
-  background: var(--orange);
+  background: var(--type-strong);
   opacity: 1;
 }
 
