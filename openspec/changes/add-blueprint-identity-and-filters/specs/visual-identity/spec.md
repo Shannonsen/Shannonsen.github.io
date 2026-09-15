@@ -55,25 +55,26 @@ Surfaces SHALL be drawn with hairline rules at low alpha rather than as bordered
 - **THEN** its rule is a bone hairline at low alpha, or it has no rule at all
 - **AND** it carries no hard offset shadow
 
-### Requirement: The grid is a sheet, and the layout is aligned to it
+### Requirement: A full-bleed grid, aligned to the content
 
-The gridded area SHALL be the content sheet itself rather than an infinite background, and the
-layout's structural edges SHALL land on its rules.
+The grid SHALL cover the full width of the page, and the layout's structural edges SHALL land
+on its rules.
 
 #### Scenario: Background rendering
 
 - **WHEN** the page is displayed
-- **THEN** the content sits on a bone sheet carrying a repeating grid of thin blue rules
-- **AND** the area outside the sheet is a plain, slightly darker ground with no grid
+- **THEN** a repeating grid of thin blue rules covers the page from edge to edge on a bone
+  ground
 - **AND** the grid distinguishes minor cells from heavier major cells
 - **AND** the grid never reduces the contrast of text placed over it
 
 #### Scenario: Structural edges land on rules
 
 - **WHEN** the page is displayed at any viewport width
-- **THEN** the sheet's own edges, its gutter, and the carousel's left and right edges each
+- **THEN** the content column's edges, its gutter, and the carousel's left and right edges each
   coincide with a grid rule
 - **AND** this holds without depending on viewport units or scrollbar width
+- **AND** it holds although the grid extends well beyond the column on both sides
 
 #### Scenario: Measures are multiples of the step
 

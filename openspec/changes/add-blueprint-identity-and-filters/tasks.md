@@ -58,12 +58,12 @@
 
 ## 10. Grid alignment (review feedback)
 
-- [x] 10.1 Move the grid from `body` onto the content sheet so its origin is the sheet corner.
-- [x] 10.2 Give the page outside the sheet a plain, slightly darker ground.
+- [x] 10.1 Anchor the grid to the content column as its own layer, bled sideways by a whole
+      multiple of the major step so it covers the viewport without losing alignment.
+- [x] 10.2 ~~Confine the grid to a sheet~~ — reverted on review; the bare sides read as empty.
 - [x] 10.3 Size the carousel to 1024px so its edges land on major rules inside the sheet.
 - [x] 10.4 Snap the vertical measures to multiples of the 32px step.
-- [x] 10.5 Draw the sheet edge with a shadow ring rather than a border, which would offset the
-      content box by a pixel.
+- [x] 10.5 ~~Draw the sheet edge with a shadow ring~~ — dropped with the sheet.
 
 ## 6. Verification
 

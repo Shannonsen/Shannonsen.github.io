@@ -14,7 +14,6 @@
  */
 :root {
   /* Ground and accent */
-  --desk: #e8e4d7;
   --bone: #f4f1e8;
   --bone-raised: #fbf9f3;
   --bone-shade: #ece8dc;
@@ -45,6 +44,11 @@
   --grid-major: 128px; /* must stay a whole multiple of the 32px minor step in the tile */
   --sheet-width: 1280px;
   --sheet-gutter: 32px;
+  /* How far the grid layer bleeds past the content column on each side. It must be a whole
+     multiple of the major step (2560 = 20 x 128): that is what lets the grid cover the full
+     viewport while its rules still land exactly where they would if the column's own corner
+     were the origin. Covers viewports up to ~6400px. */
+  --grid-bleed: 2560px;
 
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);

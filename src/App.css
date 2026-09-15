@@ -1,7 +1,10 @@
-/* The sheet. The grid lives here rather than on body, so its origin is the sheet's own
-   top-left corner — which means every structural edge inside it lands on a rule by
-   construction, at any viewport width, with no offset maths and no dependence on vw units or
-   scrollbar width. The sheet is 1280px = 10 major cells, and its gutter is one minor cell. */
+/* The grid is anchored to the content column but bleeds past it to fill the viewport.
+   Aligning a full-bleed background to centred content normally means offsetting the tile by
+   half the difference between viewport and column, which drags in vw units — whose relation to
+   the centred content box differs by the scrollbar width — and has to be re-derived at every
+   breakpoint. Instead the grid layer is positioned against the column and extended sideways by
+   a whole multiple of the major step, so its rules land exactly where a column-origin grid
+   would put them, at any width, with no arithmetic at runtime. */
 #root {
   max-width: var(--sheet-width);
   margin: 0 auto;
@@ -9,22 +12,21 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--bone);
-  /* Drawn as an SVG tile of exact 1px rects rather than stacked linear-gradients. A gradient
-     hard stop (`colour 1px, transparent 1px`) gets antialiased, so on a fractional device
-     pixel ratio some rules land crisp and others land soft — which reads as a broken grid.
-     Rects plus shape-rendering='crispEdges' snap to device pixels, so every rule is identical.
-     A <line> would not do: a 1px stroke centred on x=32 straddles 31.5-32.5 and always blurs.
-     The ink is baked into the tile — a data URI cannot read a custom property. */
+  position: relative;
+  z-index: 0; /* a stacking context, so the grid layer below sits under the content */
+}
+
+#root::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: calc(-1 * var(--grid-bleed));
+  right: calc(-1 * var(--grid-bleed));
+  pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='128'%20height='128'%20shape-rendering='crispEdges'%3E%3Cg%20fill='%230f2c52'%3E%3Crect%20x='32'%20y='0'%20width='1'%20height='128'%20opacity='0.07'/%3E%3Crect%20x='0'%20y='32'%20width='128'%20height='1'%20opacity='0.07'/%3E%3Crect%20x='64'%20y='0'%20width='1'%20height='128'%20opacity='0.07'/%3E%3Crect%20x='0'%20y='64'%20width='128'%20height='1'%20opacity='0.07'/%3E%3Crect%20x='96'%20y='0'%20width='1'%20height='128'%20opacity='0.07'/%3E%3Crect%20x='0'%20y='96'%20width='128'%20height='1'%20opacity='0.07'/%3E%3Crect%20x='0'%20y='0'%20width='1'%20height='128'%20opacity='0.15'/%3E%3Crect%20x='0'%20y='0'%20width='128'%20height='1'%20opacity='0.15'/%3E%3C/g%3E%3C/svg%3E");
   background-size: var(--grid-major) var(--grid-major);
-
-  /* The sheet's edge is drawn with a box-shadow ring rather than a border: a 1px border sits
-     inside the max-width and would push the whole content box over by a pixel, which is
-     exactly the alignment this change exists to get right. A shadow costs no layout. */
-  box-shadow:
-    0 0 0 1px var(--rule-ink),
-    0 0 48px -16px rgba(15, 44, 82, 0.18);
 }
 
 .app-container {

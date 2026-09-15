@@ -84,21 +84,28 @@ type, orange only ever fills. That removes the two-token problem the previous pa
 orange is legible *directly on* the blue (5.38:1). The others range from 3.57 down to 1.31, so
 the two colours could never touch. On a blueprint ground they touch constantly.
 
-**The grid is the sheet, not the wallpaper.** Aligning a full-bleed background to centred
-content means offsetting the tile by half the difference between viewport and column — which
-drags in `vw` units, whose relationship to the centred content box differs by the scrollbar
-width, and which has to be re-derived at every breakpoint. Putting the grid on the content
-container instead makes its origin the sheet's own top-left corner, so alignment is structural
-rather than computed: it cannot drift, at any width. The page outside becomes a plain, slightly
-darker ground, which also gives the metaphor its subject — a drafting sheet on a desk.
+**A full-bleed grid anchored to the column, via an integer bleed.** The naive way to align a
+full-bleed background to centred content is to offset the tile by half the difference between
+viewport and column. That drags in `vw` units, whose relationship to the centred content box
+differs by the scrollbar width, and it has to be re-derived at every breakpoint.
 
-The measures then have to cooperate, and they do: the sheet is 1280px = 10 major cells, its
-gutter is 32px = one minor cell, and the carousel at 1024px = 8 major cells centres inside the
-1216px content area to start at x=128 and end at x=1152, both major rules. Vertical measures
-are snapped to multiples of 32px so section edges land on rules as well.
+The grid is instead its own layer, absolutely positioned against the content column and
+extended sideways by `--grid-bleed: 2560px` — deliberately **20 whole major cells**. Because the
+bleed is an integer multiple of the step, the rules land in exactly the positions a
+column-origin grid would put them, while the layer still covers the viewport. There is no
+arithmetic at runtime and nothing to recompute per breakpoint. 2560px each side covers viewports
+to ~6400px.
 
-The sheet's edge is a `box-shadow` ring, not a border. A 1px border sits inside `max-width`
-and would push the content box over by a pixel — precisely the misalignment this is for.
+The layer is a `::before` at `z-index: -1`, which needs `#root` to be a stacking context
+(`position: relative; z-index: 0`) so it paints under the content rather than under the page.
+
+The measures cooperate: the column is 1280px = 10 major cells, its gutter is 32px = one minor
+cell, and the carousel at 1024px = 8 major cells centres inside the 1216px content area to start
+at x=128 and end at x=1152, both major rules. Vertical measures are snapped to multiples of 32px
+so section edges land on rules as well.
+
+A confined, sheet-shaped grid was tried first and rejected on review: losing the grid at the
+sides read as emptiness rather than as a sheet on a desk.
 
 **What is exempt, and why it has to be.** Carousel slides cannot participate. They are scaled,
 rotated about Y and translated in Z, recomputed every scroll frame, so their text has no fixed
@@ -123,9 +130,11 @@ sets type at all.
 
 ## Risks / Trade-offs
 
-- **The sheet's measures are now load-bearing.** Changing the sheet width, the gutter or the
-  carousel width breaks the alignment unless the new value is a whole multiple of the step. The
-  relationship is recorded in `tokens.css`, but nothing enforces it.
+- **The measures are now load-bearing.** Changing the column width, the gutter, the carousel
+  width or the bleed breaks the alignment unless the new value is a whole multiple of the step.
+  The relationships are recorded in `tokens.css`, but nothing enforces them.
+- **The bleed is finite.** Beyond a ~6400px viewport the grid would stop short. Raising
+  `--grid-bleed` is safe only in multiples of the major step.
 - **Frameless type sits directly on the grid.** The grid is at 7%/15%, faint enough that body
   copy at 8.73:1 holds, but any increase in grid strength erodes text contrast directly — there
   is no card fill to protect it any more.
