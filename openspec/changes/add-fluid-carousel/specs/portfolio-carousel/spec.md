@@ -99,6 +99,23 @@ The carousel SHALL remain usable without the 3D effect and readable by assistive
 - **THEN** the region is labelled, each slide is exposed with its position in the set, and the
   navigation controls have accessible names
 
+### Requirement: Edge treatment
+
+The carousel SHALL NOT present the neighbouring slides as straight-cut slices at its left and
+right edges.
+
+#### Scenario: Neighbour reaching the edge
+
+- **WHEN** a neighbouring slide extends past the carousel's left or right edge
+- **THEN** it fades out progressively towards that edge rather than ending at a hard vertical
+  line
+- **AND** the centered slide is unaffected by the fade
+
+#### Scenario: Background independence
+
+- **WHEN** the page background behind the carousel changes
+- **THEN** the fade still blends the neighbours into it without needing to match a colour
+
 ### Requirement: Responsive layout
 
 The carousel SHALL adapt to small screens.

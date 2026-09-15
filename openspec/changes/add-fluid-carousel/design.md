@@ -54,8 +54,17 @@ enough back that the tilt reads as depth rather than distortion.
 a transition on top of it would lag behind the drag and fight the engine. Smoothness comes
 from Embla's own scroll physics.
 
-**Slide width at 62%.** Narrower than full width so both neighbors peek and the cover flow is
-legible as a cover flow, widening to 85% under 768px where a 62% slide would be unreadable.
+**Edge fade via mask, not overlay.** With `overflow: hidden` the neighbouring cards end at a
+straight vertical line, which reads as breakage rather than depth — the one thing a cover flow
+must not do. The fix is a horizontal `mask-image` on the viewport so the neighbours dissolve.
+A gradient overlay in the page background colour was rejected: `body` carries its own vertical
+gradient, so an overlay would have to match a colour that changes down the page and would drift
+as soon as the background is touched. The mask is background-agnostic.
+
+**Slide width at 52%.** Narrow enough that both neighbours peek and the cover flow is legible as
+one, wide enough that the centre card stays a comfortable reading column (~570px at the
+1100px max width). It widens to 85% under 768px, where the neighbour barely peeks at all — so
+the mask narrows there too, or it would eat into the centre card.
 
 **Content model.** `src/data/portfolio.ts` exports three typed collections. The component
 flattens them into a discriminated union of slides and renders one card component per kind.
@@ -69,5 +78,9 @@ nothing fictional about Shannon's history can ship by accident.
 - **Imperative style writes bypass React.** The slide nodes are collected on `reInit`, so a
   change in slide count re-collects them. This is the documented Embla pattern, but it does
   mean the transforms are invisible to React DevTools.
+- **Masking an ancestor of 3D content.** A mask forces the subtree into its own buffer, and
+  some engines have historically flattened descendant 3D transforms when that happens. Chrome
+  and Firefox composite this correctly; Safari is the one to check on review. If it does
+  flatten, the fallback is pseudo-element overlays with the background colour baked in.
 - **Reduced motion loses the effect entirely.** Rotation and blur are dropped rather than
   softened — a shallow 3D tilt is still vestibular motion, and the content reads fine flat.

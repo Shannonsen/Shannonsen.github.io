@@ -25,6 +25,13 @@
       the carousel's skills card.
 - [x] 3.2 Delete `src/components/NameCarousel.tsx` and `NameCarousel.css`.
 
+## 5. Edge treatment (review feedback)
+
+- [x] 5.1 Add a horizontal `mask-image` to the viewport so neighbouring cards dissolve into
+      the page instead of being sliced by the overflow edge.
+- [x] 5.2 Narrow the slides from 62% to 52% so more of the neighbour shows before it fades.
+- [x] 5.3 Narrow the mask under 768px, where the neighbour only just peeks.
+
 ## 4. Verification
 
 - [x] 4.1 `npm run lint` and `npm run build` pass.
