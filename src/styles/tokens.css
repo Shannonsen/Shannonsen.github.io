@@ -2,65 +2,66 @@
  * Design tokens. Every colour and measure in the site comes from here — components never
  * hard-code a value, so recolouring is a one-file change.
  *
- * The site has two grounds, and that is the thing to keep straight: a near-black slate that
- * the page sits on, and bone paper sheets that carry the content. Each has its own type scale,
- * named for the ground it belongs on, so a tint cannot be used against the wrong one by
- * accident. Orange spans both.
+ * The palette is a five-step green scale, and each step has exactly one job. Two of the five
+ * cannot be text on the ground at all (#1f2420 is 1.25:1, #3f5a48 is 2.61:1), so they earn
+ * their place as the sheet's darker type and as rules instead. A sixth tone, --sage-deep, is
+ * derived between #3f5a48 and #8fb996 because the scale as given has only two tones legible on
+ * the ground and the type hierarchy needs three.
+ *
+ * The site has two grounds: the near-black ground the page lies on, and the pale sheets laid
+ * on it. Each has its own type scale, named for its ground so a tint cannot be used against
+ * the wrong one by accident.
  */
 :root {
-  /* The slate: the drawing table the page lies on */
-  --slate: #0d0d0d;
+  /* The scale */
+  --ground: #0a0a0b;
+  --sage: #8fb996;
+  --mint: #e6f2e8;
+  --sheet: #e6f2e8;
+  --sheet-raised: #f2f8f3;
+  --sheet-shade: #d8e8db;
 
-  /* The paper: the sheets laid on it */
-  --paper: #f4f1e8;
-  --paper-raised: #fffdf7;
-  --paper-shade: #ece8dc;
+  /* Type on the ground. The slides are transparent, so this type sits directly on the grid and
+     the figure that governs is the one over a major rule, which lifts the local background to
+     about #272828 — not the one over bare ground. Both are given: bare, then over a rule. */
+  --on-ground-strong: #e6f2e8; /* 17.18:1 · 12.83:1 */
+  --on-ground-body: #8fb996; /*     9.00:1 ·  6.72:1 */
+  --on-ground-muted: #779e81; /*    6.59:1 ·  4.92:1 — derived; the scale had no third tone */
 
-  /* The navy only works on paper: on the slate it is 1.39:1. The slate gets its own blue.
-     The two accents divide by job rather than by taste — blue classifies (what a thing is),
-     orange navigates (where you are and what responds). They are never the only difference
-     between two adjacent elements, because they sit at nearly the same lightness (1.03) and
-     would be told apart by hue alone. */
-  --blueprint: #0f2c52; /* on paper only */
-  --blue: #6fa8dc; /*      7.69:1 · 5.53:1 over a rule */
-  --orange: #ff7a2f; /*    7.48:1 · 5.37:1 over a rule */
-
-  /* Type on the slate. The slides are transparent, so slate type sits directly on the grid and
-     the number that matters is the one over a major rule, not over bare slate — a major rule
-     lifts the local background to about #2c2c2c. Both figures below: bare slate, then over a
-     rule. The muted tint is set by the second one. */
-  --on-slate-strong: #f4f1e8; /* 17.21:1 · 12.37:1 */
-  --on-slate-body: #b9b6ae; /*    9.59:1 ·  6.89:1 */
-  --on-slate-muted: #a29d93; /*   7.20:1 ·  5.17:1 */
-
-  /* Type on paper, with measured contrast */
-  --on-paper-strong: #0f2c52; /* 12.38:1 */
-  --on-paper-body: #2b4468; /*    8.73:1 */
-  --on-paper-muted: #54708f; /*   4.54:1, at the AA floor */
+  /* Type on a sheet. This is where the two darkest steps of the scale do their work. */
+  --on-sheet-strong: #0a0a0b; /* 17.18:1 */
+  --on-sheet-body: #1f2420; /*   13.69:1 */
+  --on-sheet-muted: #3f5a48; /*   6.59:1 */
 
   /* Laid over an accent fill. */
-  --on-orange: var(--blueprint); /* 5.38:1 */
-  --on-blue: var(--slate); /*        7.69:1 */
+  --on-sage: var(--ground); /*  9.00:1 */
+  --on-mint: var(--ground); /* 17.18:1 */
+
+  /* The two accents split by job rather than by taste: sage classifies (what a thing is),
+     mint navigates (where you are and what responds). Unlike the blue and orange they replace,
+     these separate by value as well as hue — 1.91:1 between them against 1.03:1 — so telling
+     them apart does not depend on colour vision. */
+
+  /* The technology chips. Translucent so the grid still reads through them; the alpha is
+     capped because the fill lightens the local background and by 0.22 the chip's own label
+     falls under AA over a grid rule. The colour reads through the border, not the wash. */
+  --tag-fill: rgba(143, 185, 150, 0.15);
+  --tag-rule: rgba(143, 185, 150, 0.45);
 
   /* Rules, one per ground */
-  --rule-slate: rgba(244, 241, 232, 0.18);
-  /* The technology chips. A translucent blue rather than a solid one, so the grid still shows
-     through them. The alpha is capped low on purpose: the fill lightens the local background,
-     and by 0.24 even body type falls under AA over a grid rule. Blue type on top is out
-     entirely — it never clears 4.68:1. The blue reads through the border, not the fill. */
-  --tag-fill: rgba(111, 168, 220, 0.16);
-  --tag-rule: rgba(111, 168, 220, 0.42);
-  --rule-paper: rgba(15, 44, 82, 0.2);
+  --rule-ground: rgba(230, 242, 232, 0.18);
+  --rule-sheet: rgba(31, 36, 32, 0.2);
   --rule: 2px;
   --rule-thick: 3px;
   --radius: 2px;
 
   /* Graph paper. Two scales: one alone reads as either noise or a plain box, two read as
-     drafting paper. The rules are drawn in the SVG tile in index.css — a data URI cannot read
-     a custom property — so only the tile size lives here.
+     drafting paper. The rules are drawn in the SVG tile in App.css — a data URI cannot read a
+     custom property — so only the tile size lives here. Their opacity is a contrast input, not
+     just a visual choice: raising the major rule past 13% pushes --on-ground-muted under AA.
 
-     The sheet, its gutter and the carousel are all whole multiples of the major step, which is
-     what makes every structural edge land on a rule with no offset maths:
+     The column, its gutter and the carousel are all whole multiples of the major step, which
+     is what makes every structural edge land on a rule with no offset maths:
        column 1280 = 10 x 128 · gutter 32 = 1 minor cell · carousel 1024 = 8 x 128 */
   --grid-major: 128px; /* must stay a whole multiple of the 32px minor step in the tile */
   --sheet-width: 1280px;

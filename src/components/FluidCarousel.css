@@ -6,7 +6,7 @@
 }
 
 .fluid-carousel:focus-visible {
-  outline: var(--rule-thick) solid var(--orange);
+  outline: var(--rule-thick) solid var(--mint);
   outline-offset: 8px;
   border-radius: var(--radius);
 }
@@ -88,15 +88,15 @@
 .fluid-carousel__badge.is-skills,
 .fluid-carousel__badge.is-experience,
 .fluid-carousel__badge.is-project {
-  background-color: var(--blue);
-  color: var(--on-blue);
+  background-color: var(--sage);
+  color: var(--on-sage);
 }
 
 .fluid-carousel__title {
   font-size: 1.7rem;
   font-weight: 800;
   letter-spacing: -0.015em;
-  color: var(--on-slate-strong);
+  color: var(--on-ground-strong);
   margin: 0;
 }
 
@@ -105,20 +105,20 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--on-slate-muted);
+  color: var(--on-ground-muted);
   margin: 0 0 0.35rem;
 }
 
 .fluid-carousel__company {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--blue);
+  color: var(--sage);
   margin: 0.35rem 0 0;
 }
 
 .fluid-carousel__lead {
   margin: 0.9rem 0 0;
-  color: var(--on-slate-body);
+  color: var(--on-ground-body);
   line-height: 1.65;
   font-size: 0.97rem;
 }
@@ -137,7 +137,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--on-slate-muted);
+  color: var(--on-ground-muted);
   margin: 0 0 0.5rem;
 }
 
@@ -155,7 +155,7 @@
   border-radius: 999px;
   border: 1px solid var(--tag-rule);
   background: var(--tag-fill);
-  color: var(--on-slate-body);
+  color: var(--on-ground-body);
   font-size: 0.82rem;
   font-weight: 500;
 }
@@ -166,13 +166,13 @@
   gap: 0.35rem;
   margin-top: auto;
   padding-top: 1.25rem;
-  color: var(--orange);
+  color: var(--mint);
   font-weight: 700;
   font-size: 0.92rem;
 }
 
 .fluid-carousel__link:hover {
-  color: var(--on-slate-strong);
+  color: var(--on-ground-strong);
   text-decoration: underline;
 }
 
@@ -193,10 +193,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var(--rule) solid var(--rule-slate);
+  border: var(--rule) solid var(--rule-ground);
   border-radius: 50%;
   background: transparent;
-  color: var(--on-slate-body);
+  color: var(--on-ground-body);
   cursor: pointer;
   transition: background 200ms var(--ease-out), color 200ms var(--ease-out),
     border-color 200ms var(--ease-out);
@@ -205,22 +205,22 @@
 /* No hairline needed here: on the slate the orange separates at 7.48:1 on its own. The
    hairline is only required where an orange fill sits on paper. */
 .fluid-carousel__arrow:hover {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: var(--on-orange);
+  background: var(--mint);
+  border-color: var(--mint);
+  color: var(--on-mint);
 }
 
 .fluid-carousel__rail {
   flex: 1;
   max-width: 260px;
   height: 2px;
-  background: var(--rule-slate);
+  background: var(--rule-ground);
   overflow: hidden;
 }
 
 .fluid-carousel__rail-fill {
   height: 100%;
-  background: var(--orange);
+  background: var(--mint);
   transform-origin: left center;
   transform: scaleX(0);
 }
@@ -237,7 +237,7 @@
   padding: 0;
   border: none;
   border-radius: 999px;
-  background: var(--on-slate-muted);
+  background: var(--on-ground-muted);
   opacity: 0.45;
   cursor: pointer;
   transition: width 320ms var(--ease-out), background 320ms var(--ease-out),
@@ -250,7 +250,7 @@
 
 .fluid-carousel__dot.is-selected {
   width: 26px;
-  background: var(--orange);
+  background: var(--mint);
   opacity: 1;
 }
 

@@ -1,8 +1,8 @@
 ## Purpose
 
-The visual identity is a drawing table: a near-black slate carrying a white drafting grid, with
-bone paper sheets laid on it to hold the content. Each ground has its own type scale; orange
-spans both. It is the language every component draws from.
+The visual identity is a drawing table drawn in one five-step green scale: a near-black ground
+carrying a pale drafting grid, with pale sheets laid on it to hold the content. Each ground has
+its own type scale. It is the language every component draws from.
 
 ## ADDED Requirements
 
@@ -14,9 +14,9 @@ exposed as design tokens.
 #### Scenario: Palette tokens exist
 
 - **WHEN** a component needs a colour
-- **THEN** it reads a token for the slate, for paper, for blue, for orange, or for a type tint
-  belonging to one of the two grounds
-- **AND** it does not introduce a colour outside that set
+- **THEN** it reads a token from the green scale: the ground, a sheet, sage, mint, or a type
+  tint belonging to one of the two grounds
+- **AND** it does not introduce a colour outside that scale
 
 #### Scenario: Each ground has its own type scale
 
@@ -29,38 +29,21 @@ exposed as design tokens.
 #### Scenario: The two accents divide by job
 
 - **WHEN** an element classifies content — a section badge, a filter pill's selected state
-- **THEN** it uses blue
+- **THEN** it uses sage
 - **WHEN** an element reports navigation or responds to the visitor — progress, the current
   slide, a hover, a link
-- **THEN** it uses orange
+- **THEN** it uses mint
 
-#### Scenario: The accents are never the only difference
+#### Scenario: The accents separate by value, not only hue
 
-- **WHEN** blue and orange elements appear near each other
-- **THEN** neither depends on being told apart from the other to be understood, since the two
-  sit at nearly the same lightness and differ by hue alone
+- **WHEN** sage and mint elements appear near each other
+- **THEN** they are distinguishable by lightness alone, so telling them apart does not depend
+  on colour vision
 
-#### Scenario: Blue belongs to its ground
+#### Scenario: A step that cannot be type is not used as type
 
-- **WHEN** blue is used on the slate
-- **THEN** the light blue is used, the navy being 1.39:1 there
-- **WHEN** blue is used on paper
-- **THEN** the navy is used
-
-#### Scenario: Orange as type
-
-- **WHEN** orange is set as type on the slate
-- **THEN** it is legible, at 7.48:1
-- **WHEN** orange would be set as type on paper
-- **THEN** it is not used, being 2.30:1 there
-
-#### Scenario: An orange fill is given an edge only where it needs one
-
-- **WHEN** orange is used as a fill on paper
-- **THEN** it carries a blue hairline, because orange against bone is 2.30:1 and its edges
-  would otherwise dissolve into the sheet
-- **WHEN** orange is used as a fill on the slate
-- **THEN** it needs no hairline, separating at 7.48:1 on its own
+- **WHEN** a step of the scale is too dark to meet AA on the ground
+- **THEN** it is used only as a sheet type tint or as a rule, never as type on the ground
 
 #### Scenario: No gradients in the identity
 

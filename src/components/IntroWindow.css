@@ -21,7 +21,7 @@
   max-height: calc(100vh - 3rem);
   overflow-y: auto;
   border-radius: var(--radius);
-  background: var(--paper-raised);
+  background: var(--sheet-raised);
   border: none;
   box-shadow: 0 32px 64px -20px rgba(0, 0, 0, 0.8);
   outline: none;
@@ -40,8 +40,8 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.7rem 1rem;
-  background: var(--paper-shade);
-  border-bottom: 1px solid var(--rule-paper);
+  background: var(--sheet-shade);
+  border-bottom: 1px solid var(--rule-sheet);
   border-radius: 0;
   position: sticky;
   top: 0;
@@ -58,13 +58,13 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 1px solid var(--rule-paper);
+  border: 1px solid var(--rule-sheet);
   padding: 0;
   display: block;
 }
 
 .intro-window__light--close {
-  background: var(--orange);
+  background: var(--mint);
   cursor: pointer;
   transition: filter 160ms ease, transform 160ms ease;
 }
@@ -78,16 +78,16 @@
 }
 
 .intro-window__light--close:focus-visible {
-  outline: var(--rule-thick) solid var(--orange);
+  outline: var(--rule-thick) solid var(--mint);
   outline-offset: 2px;
 }
 
 .intro-window__light--minimize {
-  background: var(--paper);
+  background: var(--sheet);
 }
 
 .intro-window__light--zoom {
-  background: var(--slate);
+  background: var(--ground);
 }
 
 .intro-window__address {
@@ -100,19 +100,19 @@
   padding: 0.3rem 0.75rem;
   margin-right: 44px; /* balances the traffic lights so the URL reads centered */
   border-radius: 999px;
-  background: var(--paper-raised);
-  border: 1px solid var(--rule-paper);
+  background: var(--sheet-raised);
+  border: 1px solid var(--rule-sheet);
   font-size: 0.8rem;
 }
 
 .intro-window__lock {
   display: flex;
-  color: var(--on-paper-muted);
+  color: var(--on-sheet-muted);
   flex-shrink: 0;
 }
 
 .intro-window__url {
-  color: var(--on-paper-strong);
+  color: var(--on-sheet-strong);
   font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
@@ -127,7 +127,7 @@
 
 .intro-window__greeting {
   font-size: 0.95rem;
-  color: var(--on-paper-muted);
+  color: var(--on-sheet-muted);
   margin: 0 0 0.25rem;
 }
 
@@ -137,13 +137,13 @@
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin: 0;
-  color: var(--on-paper-strong);
+  color: var(--on-sheet-strong);
 }
 
 .intro-window__role {
   font-size: 1.05rem;
   font-weight: 500;
-  color: var(--on-paper-body);
+  color: var(--on-sheet-body);
   margin: 0.4rem 0 0;
 }
 
@@ -153,35 +153,35 @@
   gap: 0.5rem 2.5rem;
   margin: 1.5rem 0 0;
   padding: 1rem 0 0;
-  border-top: 1px solid var(--rule-paper);
+  border-top: 1px solid var(--rule-sheet);
 }
 
 .intro-window__detail dt {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--on-paper-muted);
+  color: var(--on-sheet-muted);
   font-weight: 700;
 }
 
 .intro-window__detail dd {
   margin: 0.15rem 0 0;
   font-size: 0.95rem;
-  color: var(--on-paper-strong);
+  color: var(--on-sheet-strong);
 }
 
 .intro-window__detail a {
-  color: var(--on-paper-strong);
+  color: var(--on-sheet-strong);
 }
 
 .intro-window__detail a:hover {
-  color: var(--blueprint);
+  color: var(--on-sheet-strong);
   text-decoration: underline;
 }
 
 .intro-window__bio {
   margin: 1.25rem 0 0;
-  color: var(--on-paper-body);
+  color: var(--on-sheet-body);
   line-height: 1.65;
   font-size: 0.98rem;
 }
@@ -192,10 +192,10 @@
   gap: 0.35rem;
   margin-top: 1.75rem;
   padding: 0.75rem 1.5rem;
-  border: 1px solid var(--blueprint);
+  border: 1px solid var(--on-sheet-strong);
   border-radius: 999px;
-  background: var(--blueprint);
-  color: var(--paper);
+  background: var(--on-sheet-strong);
+  color: var(--sheet);
   font-size: 1rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -205,8 +205,8 @@
 }
 
 .intro-window__cta:hover {
-  background: var(--orange);
-  color: var(--on-orange);
+  background: var(--mint);
+  color: var(--on-mint);
   transform: translateY(-2px);
 }
 

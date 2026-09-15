@@ -109,6 +109,14 @@
       where their own label would fall under AA over a grid rule.
 - [x] 16.2 Leave the filter pills untouched.
 
+## 17. Green scale
+
+- [x] 17.1 Repaint the whole site onto the five-step green scale, giving each step the job its
+      measured contrast actually supports.
+- [x] 17.2 Derive a third ground type tone, the scale having only two legible on the ground.
+- [x] 17.3 Re-verify every pair against the worst case, including text inside a chip and text
+      on the intro window's raised sheet.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.

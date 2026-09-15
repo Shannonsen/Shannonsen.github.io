@@ -173,8 +173,11 @@ scrolled a little, whatever the content.
   AA. The token comments record both figures for exactly this reason.
 - **The chip alpha is a contrast input.** Raising `--tag-fill` past about 0.18 drops its own
   label under AA over a grid rule. The cap is recorded in the token comment.
-- **`--on-paper-muted` sits on the AA floor** at 4.54:1. It has no headroom. The paper scale is
-  now used only by the intro window, so that is where it matters.
+- **A monochrome scale has no spare hue.** If a future state needs to be distinguished from
+  sage or mint, it has to be found in value or in shape, because there is no third hue to
+  reach for.
+- **The sheet scale is used only by the intro window** now that the slides are transparent, so
+  that is the only place its tiers matter.
 - **Two type scales is two chances to reach for the wrong one.** The names carry the ground, and
   a check confirms neither scale is used against the other, but nothing enforces it at build
   time.
