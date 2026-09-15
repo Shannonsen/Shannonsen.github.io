@@ -1,8 +1,8 @@
 ## Purpose
 
-The visual identity is a drafting sheet: a bone ground carrying a blue drafting grid, type set
-in tints of the blueprint blue, and orange reserved for fills. It is the language every
-component draws from.
+The visual identity is a drawing table: a near-black slate carrying a white drafting grid, with
+bone paper sheets laid on it to hold the content. Each ground has its own type scale; orange
+spans both. It is the language every component draws from.
 
 ## ADDED Requirements
 
@@ -14,21 +14,32 @@ exposed as design tokens.
 #### Scenario: Palette tokens exist
 
 - **WHEN** a component needs a colour
-- **THEN** it reads a token for a bone ground tint, for orange, or for a blue type tint
+- **THEN** it reads a token for the slate, for paper, for orange, or for a type tint belonging
+  to one of the two grounds
 - **AND** it does not introduce a colour outside that set
 
-#### Scenario: The two colours divide the work
+#### Scenario: Each ground has its own type scale
 
-- **WHEN** something needs to be set as type, or drawn as a hairline, rule or thin indicator
-- **THEN** a blue tint is used, never orange
-- **WHEN** something needs to be filled
-- **THEN** orange is used, with the blueprint blue laid over it
+- **WHEN** text is set on the slate
+- **THEN** it uses a bone tint from the slate scale
+- **WHEN** text is set on a paper sheet
+- **THEN** it uses a blue tint from the paper scale
+- **AND** neither scale is ever used against the other ground
 
-#### Scenario: An orange fill is given an edge
+#### Scenario: Orange as type
 
-- **WHEN** orange is used as a fill on the bone ground
+- **WHEN** orange is set as type on the slate
+- **THEN** it is legible, at 7.48:1
+- **WHEN** orange would be set as type on paper
+- **THEN** it is not used, being 2.30:1 there
+
+#### Scenario: An orange fill is given an edge only where it needs one
+
+- **WHEN** orange is used as a fill on paper
 - **THEN** it carries a blue hairline, because orange against bone is 2.30:1 and its edges
-  would otherwise dissolve into the page
+  would otherwise dissolve into the sheet
+- **WHEN** orange is used as a fill on the slate
+- **THEN** it needs no hairline, separating at 7.48:1 on its own
 
 #### Scenario: No gradients in the identity
 
@@ -63,8 +74,8 @@ on its rules.
 #### Scenario: Background rendering
 
 - **WHEN** the page is displayed
-- **THEN** a repeating grid of thin blue rules covers the page from edge to edge on a bone
-  ground
+- **THEN** a repeating grid of thin white rules covers the page from edge to edge on a
+  near-black slate
 - **AND** the grid distinguishes minor cells from heavier major cells
 - **AND** the grid never reduces the contrast of text placed over it
 

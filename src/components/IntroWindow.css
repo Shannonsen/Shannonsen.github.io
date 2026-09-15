@@ -8,7 +8,7 @@
   padding: 1.5rem;
   /* A flat wash, not a blur: blurring the 1px background grid smears it into moiré bands,
      and blur is out of register with the rest of the identity anyway. */
-  background: rgba(15, 44, 82, 0.58);
+  background: rgba(5, 5, 5, 0.72);
   animation: intro-overlay-enter 320ms ease forwards;
 }
 
@@ -21,9 +21,9 @@
   max-height: calc(100vh - 3rem);
   overflow-y: auto;
   border-radius: var(--radius);
-  background: var(--bone-raised);
-  border: 1px solid var(--rule-strong);
-  box-shadow: 0 32px 64px -20px rgba(15, 44, 82, 0.45);
+  background: var(--paper-raised);
+  border: none;
+  box-shadow: 0 32px 64px -20px rgba(0, 0, 0, 0.8);
   outline: none;
   transform-origin: center;
   animation: intro-window-enter 420ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -40,8 +40,8 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.7rem 1rem;
-  background: var(--bone-shade);
-  border-bottom: 1px solid var(--rule-ink);
+  background: var(--paper-shade);
+  border-bottom: 1px solid var(--rule-paper);
   border-radius: 0;
   position: sticky;
   top: 0;
@@ -58,7 +58,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 1px solid var(--rule-ink);
+  border: 1px solid var(--rule-paper);
   padding: 0;
   display: block;
 }
@@ -78,16 +78,16 @@
 }
 
 .intro-window__light--close:focus-visible {
-  outline: var(--rule-thick) solid var(--type-strong);
+  outline: var(--rule-thick) solid var(--orange);
   outline-offset: 2px;
 }
 
 .intro-window__light--minimize {
-  background: var(--bone);
+  background: var(--paper);
 }
 
 .intro-window__light--zoom {
-  background: var(--blueprint);
+  background: var(--slate);
 }
 
 .intro-window__address {
@@ -100,19 +100,19 @@
   padding: 0.3rem 0.75rem;
   margin-right: 44px; /* balances the traffic lights so the URL reads centered */
   border-radius: 999px;
-  background: var(--bone-raised);
-  border: 1px solid var(--rule-ink);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule-paper);
   font-size: 0.8rem;
 }
 
 .intro-window__lock {
   display: flex;
-  color: var(--type-muted);
+  color: var(--on-paper-muted);
   flex-shrink: 0;
 }
 
 .intro-window__url {
-  color: var(--type-strong);
+  color: var(--on-paper-strong);
   font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
@@ -127,7 +127,7 @@
 
 .intro-window__greeting {
   font-size: 0.95rem;
-  color: var(--type-muted);
+  color: var(--on-paper-muted);
   margin: 0 0 0.25rem;
 }
 
@@ -137,13 +137,13 @@
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin: 0;
-  color: var(--type-strong);
+  color: var(--on-paper-strong);
 }
 
 .intro-window__role {
   font-size: 1.05rem;
   font-weight: 500;
-  color: var(--type-body);
+  color: var(--on-paper-body);
   margin: 0.4rem 0 0;
 }
 
@@ -153,35 +153,35 @@
   gap: 0.5rem 2.5rem;
   margin: 1.5rem 0 0;
   padding: 1rem 0 0;
-  border-top: 1px solid var(--rule-ink);
+  border-top: 1px solid var(--rule-paper);
 }
 
 .intro-window__detail dt {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--type-muted);
+  color: var(--on-paper-muted);
   font-weight: 700;
 }
 
 .intro-window__detail dd {
   margin: 0.15rem 0 0;
   font-size: 0.95rem;
-  color: var(--type-strong);
+  color: var(--on-paper-strong);
 }
 
 .intro-window__detail a {
-  color: var(--type-strong);
+  color: var(--on-paper-strong);
 }
 
 .intro-window__detail a:hover {
-  color: var(--type-strong);
+  color: var(--blueprint);
   text-decoration: underline;
 }
 
 .intro-window__bio {
   margin: 1.25rem 0 0;
-  color: var(--type-body);
+  color: var(--on-paper-body);
   line-height: 1.65;
   font-size: 0.98rem;
 }
@@ -195,7 +195,7 @@
   border: 1px solid var(--blueprint);
   border-radius: 999px;
   background: var(--blueprint);
-  color: var(--bone);
+  color: var(--paper);
   font-size: 1rem;
   font-weight: 800;
   letter-spacing: 0.04em;

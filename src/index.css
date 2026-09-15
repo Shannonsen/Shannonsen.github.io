@@ -5,9 +5,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light;
-  color: var(--type-body);
-  background-color: var(--bone);
+  color-scheme: dark;
+  color: var(--on-slate-body);
+  background-color: var(--slate);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,7 +29,7 @@ body {
 body {
   margin: 0;
   min-width: 320px;
-  background-color: var(--bone);
+  background-color: var(--slate);
   overscroll-behavior: none;
 }
 
@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
   font-weight: 600;
-  color: var(--type-strong);
+  color: var(--orange);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
@@ -62,22 +62,23 @@ a {
 }
 
 a:hover {
+  color: var(--on-slate-strong);
   text-decoration-thickness: 2px;
 }
 
 button {
   border-radius: var(--radius);
-  border: var(--rule) solid var(--rule-ink);
+  border: var(--rule) solid var(--rule-slate);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 700;
   font-family: inherit;
   background-color: transparent;
-  color: var(--type-strong);
+  color: var(--on-slate-strong);
   cursor: pointer;
 }
 
 button:focus-visible {
-  outline: var(--rule-thick) solid var(--type-strong);
+  outline: var(--rule-thick) solid var(--orange);
   outline-offset: 2px;
 }

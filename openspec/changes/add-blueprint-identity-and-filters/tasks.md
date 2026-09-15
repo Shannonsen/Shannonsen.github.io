@@ -86,6 +86,15 @@
       than hiding it, keeping them frameless.
 - [x] 13.2 Verify the fill does not erode type contrast — it improves it at every tint.
 
+## 14. Slate ground
+
+- [x] 14.1 Invert the ground to a near-black slate with white grid rules.
+- [x] 14.2 Split the type scale in two, `--on-slate-*` and `--on-paper-*`, named for their
+      ground so neither can be used against the wrong one by accident.
+- [x] 14.3 Make the carousel slides solid bone sheets, separating at 17.21:1.
+- [x] 14.4 Let orange be type on the slate, and take the hairline off orange fills there.
+- [x] 14.5 Check no component uses one ground's type scale against the other.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.

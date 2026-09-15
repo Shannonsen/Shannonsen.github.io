@@ -10,10 +10,10 @@
 .filter-pill {
   position: relative;
   padding: 0.55rem 1.4rem;
-  border: var(--rule) solid var(--rule-ink);
+  border: var(--rule) solid var(--rule-slate);
   border-radius: 999px;
   background: transparent;
-  color: var(--type-body);
+  color: var(--on-slate-body);
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -24,22 +24,22 @@
 }
 
 .filter-pill:hover {
-  border-color: var(--type-body);
-  color: var(--type-strong);
+  border-color: var(--on-slate-body);
+  color: var(--on-slate-strong);
 }
 
 /* Colour alone does not carry the state: the active pill is also the only one whose rule
    matches its fill, so it reads as a solid object rather than an outline. */
 .filter-pill.is-active {
   background: var(--orange);
-  border-color: var(--blueprint);
+  border-color: var(--orange);
   color: var(--on-orange);
 }
 
 .filter-pill.is-active.is-all {
-  background: var(--type-strong);
-  border-color: var(--type-strong);
-  color: var(--bone);
+  background: var(--on-slate-strong);
+  border-color: var(--on-slate-strong);
+  color: var(--slate);
 }
 
 @media (max-width: 480px) {

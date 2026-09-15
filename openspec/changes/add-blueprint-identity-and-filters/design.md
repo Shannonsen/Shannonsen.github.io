@@ -168,14 +168,14 @@ scrolled a little, whatever the content.
   is invisible from either side on its own.
 - **The bleed is finite.** Beyond a ~6400px viewport the grid would stop short. Raising
   `--grid-bleed` is safe only in multiples of the major step.
-- **Frameless type sits directly on the grid.** The grid is at 7%/15%, faint enough that body
-  copy at 8.73:1 holds, but any increase in grid strength erodes text contrast directly — there
-  is no card fill to protect it any more.
-- **`--type-muted` sits on the AA floor** at 4.54:1 on the bare ground, where the header and
-  footer use it. It has no headroom there: darkening the bone or lightening that tint drops it
-  below. On a card the translucent fill takes it to 4.91:1.
-- **The card fill's alpha is load-bearing for contrast.** Lowering it moves the card's effective
-  background back towards bare bone and takes `--type-muted` back to the floor.
+- **Header and footer type sits directly on the grid**, which is at 6%/13% white on the slate.
+  Raising the grid strength erodes their contrast directly. Card text is now protected by the
+  sheet.
+- **`--on-paper-muted` sits on the AA floor** at 4.54:1. It has no headroom: darkening the paper
+  or lightening that tint drops it below.
+- **Two type scales is two chances to reach for the wrong one.** The names carry the ground, and
+  a check confirms neither scale is used against the other, but nothing enforces it at build
+  time.
 - **Orange is now confined to fills.** That is a real constraint on future work, not a passing
   preference — anything that wants to be orange and thin has to become a fill or become blue.
 - **Contrast measured, not eyeballed.** Every palette colour was checked against paper and ink.
