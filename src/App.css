@@ -91,3 +91,9 @@
   }
 }
 
+
+/* While the intro window is open the page behind it is inert scenery. */
+.app-container.is-behind-intro {
+  pointer-events: none;
+  user-select: none;
+}
