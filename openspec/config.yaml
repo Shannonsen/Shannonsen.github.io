@@ -1,0 +1,16 @@
+schema: spec-driven
+
+context: |
+  Project: Shannon Sen Perdomo's personal portfolio (shannonsen.github.io).
+  Tech stack: React 19, TypeScript, Vite 7, Hopper UI (@hopper-ui/components),
+  Embla Carousel (embla-carousel-react + autoplay), plain CSS modules per component
+  under src/components/.
+  Deployment: GitHub Pages via .github/workflows/deploy.yml.
+  Conventions:
+    - All user-facing copy and all code identifiers are written in English.
+    - One feature per git branch, branch names in English (feature/<kebab-case>).
+    - Conventional commits.
+    - Components live in src/components/<Name>.tsx with a sibling <Name>.css.
+  Owner facts: Shannon Sen Perdomo, shannonsenpmo@gmail.com, Mexico.
+  Software Engineer graduated from the Software Engineering program at the
+  Facultad de Matematicas, Universidad Autonoma de Yucatan.
