@@ -14,6 +14,7 @@
  */
 :root {
   /* Ground and accent */
+  --desk: #e8e4d7;
   --bone: #f4f1e8;
   --bone-raised: #fbf9f3;
   --bone-shade: #ece8dc;
@@ -38,7 +39,12 @@
   /* Graph paper. Two scales: one alone reads as either noise or a plain box, two read as
      drafting paper. The rules are drawn in the SVG tile in index.css — a data URI cannot read
      a custom property — so only the tile size lives here. */
+  /* The sheet, its gutter and the carousel are all whole multiples of the major step, which
+     is what makes every structural edge land on a rule without any offset maths:
+       sheet 1280 = 10 x 128 · gutter 32 = 1 minor cell · carousel 1024 = 8 x 128 */
   --grid-major: 128px; /* must stay a whole multiple of the 32px minor step in the tile */
+  --sheet-width: 1280px;
+  --sheet-gutter: 32px;
 
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);

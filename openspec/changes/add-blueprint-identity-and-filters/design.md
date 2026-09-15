@@ -84,6 +84,28 @@ type, orange only ever fills. That removes the two-token problem the previous pa
 orange is legible *directly on* the blue (5.38:1). The others range from 3.57 down to 1.31, so
 the two colours could never touch. On a blueprint ground they touch constantly.
 
+**The grid is the sheet, not the wallpaper.** Aligning a full-bleed background to centred
+content means offsetting the tile by half the difference between viewport and column — which
+drags in `vw` units, whose relationship to the centred content box differs by the scrollbar
+width, and which has to be re-derived at every breakpoint. Putting the grid on the content
+container instead makes its origin the sheet's own top-left corner, so alignment is structural
+rather than computed: it cannot drift, at any width. The page outside becomes a plain, slightly
+darker ground, which also gives the metaphor its subject — a drafting sheet on a desk.
+
+The measures then have to cooperate, and they do: the sheet is 1280px = 10 major cells, its
+gutter is 32px = one minor cell, and the carousel at 1024px = 8 major cells centres inside the
+1216px content area to start at x=128 and end at x=1152, both major rules. Vertical measures
+are snapped to multiples of 32px so section edges land on rules as well.
+
+The sheet's edge is a `box-shadow` ring, not a border. A 1px border sits inside `max-width`
+and would push the content box over by a pixel — precisely the misalignment this is for.
+
+**What is exempt, and why it has to be.** Carousel slides cannot participate. They are scaled,
+rotated about Y and translated in Z, recomputed every scroll frame, so their text has no fixed
+relationship to a page rule. This is the reason the alignment is structural — edges, gutters and
+section boundaries — rather than a typographic baseline grid: a baseline grid would align the
+header and footer while the largest element on the page visibly floated free of it.
+
 **Bone ground, blue grid.** The graph paper predates this palette, and drawing its rules in the
 blueprint blue rather than black is what makes the page read as a drafting sheet rather than as
 lined paper. Rules sit at 7%/15%.
@@ -101,6 +123,9 @@ sets type at all.
 
 ## Risks / Trade-offs
 
+- **The sheet's measures are now load-bearing.** Changing the sheet width, the gutter or the
+  carousel width breaks the alignment unless the new value is a whole multiple of the step. The
+  relationship is recorded in `tokens.css`, but nothing enforces it.
 - **Frameless type sits directly on the grid.** The grid is at 7%/15%, faint enough that body
   copy at 8.73:1 holds, but any increase in grid strength erodes text contrast directly — there
   is no card fill to protect it any more.

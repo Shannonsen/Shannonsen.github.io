@@ -55,16 +55,36 @@ Surfaces SHALL be drawn with hairline rules at low alpha rather than as bordered
 - **THEN** its rule is a bone hairline at low alpha, or it has no rule at all
 - **AND** it carries no hard offset shadow
 
-### Requirement: Drafting ground
+### Requirement: The grid is a sheet, and the layout is aligned to it
 
-The page SHALL sit on a bone ground carrying a drafting grid.
+The gridded area SHALL be the content sheet itself rather than an infinite background, and the
+layout's structural edges SHALL land on its rules.
 
 #### Scenario: Background rendering
 
 - **WHEN** the page is displayed
-- **THEN** the background is bone with a repeating grid of thin blue rules
+- **THEN** the content sits on a bone sheet carrying a repeating grid of thin blue rules
+- **AND** the area outside the sheet is a plain, slightly darker ground with no grid
 - **AND** the grid distinguishes minor cells from heavier major cells
 - **AND** the grid never reduces the contrast of text placed over it
+
+#### Scenario: Structural edges land on rules
+
+- **WHEN** the page is displayed at any viewport width
+- **THEN** the sheet's own edges, its gutter, and the carousel's left and right edges each
+  coincide with a grid rule
+- **AND** this holds without depending on viewport units or scrollbar width
+
+#### Scenario: Measures are multiples of the step
+
+- **WHEN** a vertical measure separates two sections
+- **THEN** it is a whole multiple of the minor step, so section edges land on rules too
+
+#### Scenario: What cannot align
+
+- **WHEN** a carousel slide is rendered
+- **THEN** its content is exempt: the slide is scaled, rotated and translated in 3D on every
+  scroll frame, so its text cannot sit on a page-level rule
 
 ### Requirement: Contrast
 

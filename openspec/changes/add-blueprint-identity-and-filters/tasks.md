@@ -56,6 +56,15 @@
 - [x] 9.3 Remove orange from all type, including links, where it is 2.30:1 on bone.
 - [x] 9.4 Give the intro window a rule and shadow so it reads against a bone page.
 
+## 10. Grid alignment (review feedback)
+
+- [x] 10.1 Move the grid from `body` onto the content sheet so its origin is the sheet corner.
+- [x] 10.2 Give the page outside the sheet a plain, slightly darker ground.
+- [x] 10.3 Size the carousel to 1024px so its edges land on major rules inside the sheet.
+- [x] 10.4 Snap the vertical measures to multiples of the 32px step.
+- [x] 10.5 Draw the sheet edge with a shadow ring rather than a border, which would offset the
+      content box by a pixel.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.

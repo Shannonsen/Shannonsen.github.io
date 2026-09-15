@@ -1,10 +1,30 @@
+/* The sheet. The grid lives here rather than on body, so its origin is the sheet's own
+   top-left corner — which means every structural edge inside it lands on a rule by
+   construction, at any viewport width, with no offset maths and no dependence on vw units or
+   scrollbar width. The sheet is 1280px = 10 major cells, and its gutter is one minor cell. */
 #root {
-  max-width: 1280px;
+  max-width: var(--sheet-width);
   margin: 0 auto;
-  padding: 2rem;
+  padding: var(--sheet-gutter);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--bone);
+  /* Drawn as an SVG tile of exact 1px rects rather than stacked linear-gradients. A gradient
+     hard stop (`colour 1px, transparent 1px`) gets antialiased, so on a fractional device
+     pixel ratio some rules land crisp and others land soft — which reads as a broken grid.
+     Rects plus shape-rendering='crispEdges' snap to device pixels, so every rule is identical.
+     A <line> would not do: a 1px stroke centred on x=32 straddles 31.5-32.5 and always blurs.
+     The ink is baked into the tile — a data URI cannot read a custom property. */
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='128'%20height='128'%20shape-rendering='crispEdges'%3E%3Cg%20fill='%230f2c52'%3E%3Crect%20x='32'%20y='0'%20width='1'%20height='128'%20opacity='0.07'/%3E%3Crect%20x='0'%20y='32'%20width='128'%20height='1'%20opacity='0.07'/%3E%3Crect%20x='64'%20y='0'%20width='1'%20height='128'%20opacity='0.07'/%3E%3Crect%20x='0'%20y='64'%20width='128'%20height='1'%20opacity='0.07'/%3E%3Crect%20x='96'%20y='0'%20width='1'%20height='128'%20opacity='0.07'/%3E%3Crect%20x='0'%20y='96'%20width='128'%20height='1'%20opacity='0.07'/%3E%3Crect%20x='0'%20y='0'%20width='1'%20height='128'%20opacity='0.15'/%3E%3Crect%20x='0'%20y='0'%20width='128'%20height='1'%20opacity='0.15'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: var(--grid-major) var(--grid-major);
+
+  /* The sheet's edge is drawn with a box-shadow ring rather than a border: a 1px border sits
+     inside the max-width and would push the whole content box over by a pixel, which is
+     exactly the alignment this change exists to get right. A shadow costs no layout. */
+  box-shadow:
+    0 0 0 1px var(--rule-ink),
+    0 0 48px -16px rgba(15, 44, 82, 0.18);
 }
 
 .app-container {
@@ -22,7 +42,7 @@
 
 .app-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem; /* 128px total with the padding: one major cell */
   padding: 2rem 0;
 }
 
@@ -45,8 +65,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-  padding: 1rem 0;
+  gap: 4rem;
+  padding: 0;
 }
 
 .app-footer {

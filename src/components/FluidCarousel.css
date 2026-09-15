@@ -1,6 +1,6 @@
 .fluid-carousel {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1024px;
   margin: 0 auto;
   outline: none;
 }
@@ -15,7 +15,7 @@
   overflow: hidden;
   /* Far enough back that the tilt reads as depth instead of distortion. */
   perspective: 1600px;
-  padding: 2.5rem 0;
+  padding: 2rem 0;
 
   /* Dissolve the neighbouring cards into the page instead of letting the overflow edge
      slice them with a straight vertical cut. A mask is used rather than a gradient overlay
