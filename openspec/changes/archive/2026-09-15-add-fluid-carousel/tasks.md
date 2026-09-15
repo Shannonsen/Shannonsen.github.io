@@ -35,10 +35,8 @@
 ## 4. Verification
 
 - [x] 4.1 `npm run lint` and `npm run build` pass.
-- [ ] 4.2 Manually verify in `npm run dev`: drag tracks continuously, the loop seam is clean,
+- [x] 4.2 Manually verify in `npm run dev`: drag tracks continuously, the loop seam is clean,
       arrows/dots/keyboard work, layout holds at 375px, reduced motion drops the 3D.
 
-> 4.2 note: the Chrome extension was not connected, so the manual drag/loop/responsive
-> pass is pending on the developer's machine. Lint, type-check and build pass, and the
-> Embla internals the tween relies on (slideRegistry, slideLooper.loopPoints, target())
-> were verified against the installed 8.6.0 source.
+> 4.2 verified by Shannon on her machine after the edge-fade fix. Still open for a later
+> pass: whether Safari flattens the 3D transforms under the viewport mask (see design.md).
