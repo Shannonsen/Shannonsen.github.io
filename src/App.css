@@ -97,10 +97,12 @@
    header and footer leave. The header has to give up some of its size for that to fit on a
    laptop — a locked page is only worth having if the content actually fits inside it. */
 @media (min-height: 700px) {
+  /* #root must never clip: the grid layer is a ::before that deliberately overflows it by
+     2560px on each side, and `overflow: hidden` here would crop the background back to the
+     content column. Nothing can scroll anyway — body already carries the lock. */
   #root {
     height: 100dvh;
     min-height: 0;
-    overflow: hidden;
   }
 
   .app-header {

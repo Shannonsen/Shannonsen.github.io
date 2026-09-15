@@ -75,6 +75,11 @@
 - [x] 11.5 Fix `.app-container`'s `min-height: 100vh`, which made the page taller than the
       viewport regardless of content.
 
+## 12. Grid clipping regression
+
+- [x] 12.1 Remove `overflow: hidden` from `#root`, which cropped the bleeding grid layer back
+      to the content column. The scroll lock lives on `body` and was always sufficient.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.

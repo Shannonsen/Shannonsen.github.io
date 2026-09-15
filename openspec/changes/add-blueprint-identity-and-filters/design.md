@@ -99,6 +99,10 @@ to ~6400px.
 The layer is a `::before` at `z-index: -1`, which needs `#root` to be a stacking context
 (`position: relative; z-index: 0`) so it paints under the content rather than under the page.
 
+The trap this sets: because the layer is a child of `#root` and deliberately overflows it, any
+`overflow` on `#root` crops the background back to the content column. Adding `overflow: hidden`
+there while building the static page did exactly that. Only `body` carries the scroll lock.
+
 The measures cooperate: the column is 1280px = 10 major cells, its gutter is 32px = one minor
 cell, and the carousel at 1024px = 8 major cells centres inside the 1216px content area to start
 at x=128 and end at x=1152, both major rules. Vertical measures are snapped to multiples of 32px
@@ -159,6 +163,9 @@ scrolled a little, whatever the content.
 - **Card content can outgrow a short viewport.** At the 700px floor the slide gets about 334px.
   The bio clamps to four lines to give way first, but a longer bio or a fifth skill group would
   clip rather than scroll.
+- **`#root` must never clip.** The grid layer overflows it on purpose, so an `overflow` rule
+  there silently crops the background to the column. It is commented in place, but the coupling
+  is invisible from either side on its own.
 - **The bleed is finite.** Beyond a ~6400px viewport the grid would stop short. Raising
   `--grid-bleed` is safe only in multiples of the major step.
 - **Frameless type sits directly on the grid.** The grid is at 7%/15%, faint enough that body
