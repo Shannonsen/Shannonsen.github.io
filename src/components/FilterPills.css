@@ -10,83 +10,36 @@
 .filter-pill {
   position: relative;
   padding: 0.55rem 1.4rem;
-  border: var(--rule) solid var(--ink);
-  border-radius: var(--radius);
-  background: var(--paper-card);
-  color: var(--ink);
+  border: var(--rule) solid var(--rule-ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--type-body);
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: var(--shadow-hard);
-  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease,
-    color 120ms ease;
+  transition: background 220ms var(--ease-out), color 220ms var(--ease-out),
+    border-color 220ms var(--ease-out);
 }
 
 .filter-pill:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 var(--ink);
+  border-color: var(--type-body);
+  color: var(--type-strong);
 }
 
-/* The active pill sinks onto the page: it moves by the shadow offset and loses the shadow,
-   so the state reads as pressed rather than merely coloured. */
+/* Colour alone does not carry the state: the active pill is also the only one whose rule
+   matches its fill, so it reads as a solid object rather than an outline. */
 .filter-pill.is-active {
-  transform: translate(4px, 4px);
-  box-shadow: none;
-  color: var(--paper-card);
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--on-orange);
 }
 
 .filter-pill.is-active.is-all {
-  background: var(--ink);
-}
-
-.filter-pill.is-active.is-skills,
-.filter-pill.is-active.is-experience,
-.filter-pill.is-active.is-project {
-  background-color: var(--color-section);
-  color: var(--on-section);
-}
-
-.filter-pill.is-active.is-experience {
-  background-image: var(--pattern-hatch);
-}
-
-.filter-pill.is-active.is-project {
-  background-image: var(--pattern-dots);
-  background-size: var(--pattern-dots-size);
-}
-
-/* Colour alone must not carry the state, so an inactive pill still shows its section via a
-   marker underline while the active one is identified by the pressed geometry. */
-.filter-pill::after {
-  content: '';
-  position: absolute;
-  left: 0.6rem;
-  right: 0.6rem;
-  bottom: 0.3rem;
-  height: 3px;
-  background: transparent;
-}
-
-.filter-pill.is-skills::after {
-  background-color: var(--color-section);
-}
-
-.filter-pill.is-experience::after {
-  background-color: var(--color-section);
-  background-image: var(--pattern-hatch);
-}
-
-.filter-pill.is-project::after {
-  background-color: var(--color-section);
-  background-image: var(--pattern-dots);
-  background-size: var(--pattern-dots-size);
-}
-
-.filter-pill.is-active::after {
-  background: transparent;
-  background-image: none;
+  background: var(--type-strong);
+  border-color: var(--type-strong);
+  color: var(--blueprint);
 }
 
 @media (max-width: 480px) {
@@ -106,7 +59,6 @@
   }
 
   .filter-pill:hover {
-    transform: none;
-    box-shadow: var(--shadow-hard);
+    transition: none;
   }
 }

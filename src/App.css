@@ -27,7 +27,7 @@
 }
 
 .welcome-title {
-  color: var(--ink);
+  color: var(--type-strong);
   margin-bottom: 1rem;
   font-size: 3rem;
   font-weight: 800;
@@ -37,7 +37,7 @@
 
 .subtitle {
   font-size: 1.2rem;
-  color: var(--ink-soft);
+  color: var(--type-body);
   margin-top: 0.5rem;
 }
 
@@ -53,11 +53,11 @@
   margin-top: 4rem;
   padding: 2rem 0;
   text-align: center;
-  border-top: var(--rule) solid var(--ink);
+  border-top: 1px solid var(--rule-ink);
 }
 
 .app-footer p {
-  color: var(--ink-faint);
+  color: var(--type-muted);
 }
 
 @media (max-width: 768px) {

@@ -2,27 +2,32 @@
 
 The site has no visual point of view: it leans on the default indigo-to-purple gradient that
 ships with every React starter, soft shadows and rounded corners. Shannon wants a retro
-identity built on ink and coral in a Bauhaus register: flat blocks, thick black rules, hard
-offset shadows, and a graph-paper ground.
+identity built on blue and orange. The direction that earns those two colours is a blueprint:
+a deep blue ground carrying the graph paper, type set in tints of bone, and orange spent only
+where something needs to be pointed at.
 
 Separately, the carousel now holds three kinds of content in one continuous run. A visitor who
 wants to see the projects has to drag past everything else. Section filters solve that.
 
 ## What Changes
 
-- Introduce a design-token layer (`src/styles/tokens.css`) defining ink, coral, the
+- Introduce a design-token layer (`src/styles/tokens.css`) defining the blueprint ground, orange, the
   paper ground, the ink colour, rule weights and the hard-shadow offset. Every component
   references tokens instead of hard-coded hex values.
 - Replace the indigo/purple gradient identity everywhere: intro window, carousel, buttons,
   dots, arrows, headings.
 - Give the page a graph-paper background: black rules on bone, minor and major grid.
-- Restyle components in the Bauhaus register: square corners, 2px ink rules, hard offset
-  shadows instead of blurred ones, flat fills instead of gradients.
+- Restyle components for the blueprint: hairline bone rules at low alpha, rounded controls,
+  no hard offset shadows, flat fills instead of gradients.
 - Add a filter bar above the carousel with four pills — All, Skills, Experience, Projects.
   Selecting one narrows the carousel to that section's slides; All restores every slide.
-- With one accent colour, sections are told apart by riso texture instead of hue: Skills
-  solid, Experience hatched, Projects dotted — the same in the pill and on the badge.
-- **BREAKING** (visual): the previous soft, rounded, gradient look is gone entirely.
+- Sections are not colour-coded at all: every badge is orange and names its section in words,
+  which is the only signal that survives being read aloud anyway.
+- Carousel cards lose their frame entirely — no fill, no rule, no shadow. Depth comes only
+  from the tilt, the scale and the blur, so nothing cuts between one slide and the next.
+- Inner card layers parallax against the card as it travels, and the discrete dots gain a
+  continuous progress rail, so the carousel reads as motion rather than as steps.
+- **BREAKING** (visual): the previous light, gradient look is gone entirely, and the page ground is now dark.
 
 ## Capabilities
 

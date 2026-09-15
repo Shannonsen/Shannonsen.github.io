@@ -6,7 +6,7 @@
 }
 
 .fluid-carousel:focus-visible {
-  outline: var(--rule-thick) solid var(--coral-deep);
+  outline: var(--rule-thick) solid var(--orange);
   outline-offset: 8px;
   border-radius: var(--radius);
 }
@@ -61,20 +61,21 @@
   min-height: 380px;
   display: flex;
   flex-direction: column;
-  padding: 2.25rem;
-  border-radius: var(--radius);
-  background: var(--paper-card);
-  border: var(--rule) solid var(--ink);
-  box-shadow: var(--shadow-hard-lg);
+  padding: 1rem 1.5rem;
   will-change: transform, opacity, filter;
   backface-visibility: hidden;
 }
 
+/* Every layer that parallaxes needs its own compositing, and none of them should transition:
+   the transform is rewritten each scroll frame. */
+.fluid-carousel__inner [data-depth] {
+  will-change: transform;
+}
+
 .fluid-carousel__badge {
   align-self: flex-start;
-  padding: 0.25rem 0.7rem;
+  padding: 0.3rem 0.75rem;
   border-radius: var(--radius);
-  border: var(--rule) solid var(--ink);
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -82,30 +83,20 @@
   margin-bottom: 1.1rem;
 }
 
+/* One accent for every section: the badge already names the section in words, so spending
+   more colour on telling them apart would buy nothing. */
 .fluid-carousel__badge.is-skills,
 .fluid-carousel__badge.is-experience,
 .fluid-carousel__badge.is-project {
-  background-color: var(--color-section);
-  color: var(--on-section);
-}
-
-/* Skills stays solid. The diagonal hatch and the dots are deliberately left to antialias —
-   unlike the axis-aligned 1px rules of the graph paper, a hard diagonal or a hard-edged dot
-   looks jagged when snapped to the pixel grid. */
-.fluid-carousel__badge.is-experience {
-  background-image: var(--pattern-hatch);
-}
-
-.fluid-carousel__badge.is-project {
-  background-image: var(--pattern-dots);
-  background-size: var(--pattern-dots-size);
+  background-color: var(--orange);
+  color: var(--on-orange);
 }
 
 .fluid-carousel__title {
   font-size: 1.7rem;
   font-weight: 800;
   letter-spacing: -0.015em;
-  color: var(--ink);
+  color: var(--type-strong);
   margin: 0;
 }
 
@@ -114,20 +105,20 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--type-muted);
   margin: 0 0 0.35rem;
 }
 
 .fluid-carousel__company {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--coral-deep);
+  color: var(--orange);
   margin: 0.35rem 0 0;
 }
 
 .fluid-carousel__lead {
   margin: 0.9rem 0 0;
-  color: var(--ink-soft);
+  color: var(--type-body);
   line-height: 1.65;
   font-size: 0.97rem;
 }
@@ -146,7 +137,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--type-muted);
   margin: 0 0 0.5rem;
 }
 
@@ -162,9 +153,9 @@
 .fluid-carousel__tag {
   padding: 0.25rem 0.6rem;
   border-radius: var(--radius);
-  border: 1px solid var(--ink);
-  background: var(--paper);
-  color: var(--ink);
+  border: 1px solid var(--rule-ink);
+  background: transparent;
+  color: var(--type-body);
   font-size: 0.82rem;
   font-weight: 500;
 }
@@ -175,13 +166,13 @@
   gap: 0.35rem;
   margin-top: auto;
   padding-top: 1.25rem;
-  color: var(--coral-deep);
+  color: var(--orange);
   font-weight: 700;
   font-size: 0.92rem;
 }
 
 .fluid-carousel__link:hover {
-  color: var(--ink);
+  color: var(--type-strong);
   text-decoration: underline;
 }
 
@@ -202,23 +193,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: var(--rule) solid var(--ink);
-  border-radius: var(--radius);
-  background: var(--paper-card);
-  color: var(--ink);
+  border: var(--rule) solid var(--rule-ink);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--type-body);
   cursor: pointer;
-  box-shadow: var(--shadow-hard);
-  transition: background 140ms ease, color 140ms ease, transform 120ms ease,
-    box-shadow 120ms ease;
+  transition: background 200ms var(--ease-out), color 200ms var(--ease-out),
+    border-color 200ms var(--ease-out);
 }
 
 .fluid-carousel__arrow:hover {
-  background: var(--coral-light);
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--on-orange);
 }
 
-.fluid-carousel__arrow:active {
-  transform: translate(4px, 4px);
-  box-shadow: none;
+.fluid-carousel__rail {
+  flex: 1;
+  max-width: 260px;
+  height: 2px;
+  background: var(--rule-ink);
+  overflow: hidden;
+}
+
+.fluid-carousel__rail-fill {
+  height: 100%;
+  background: var(--orange);
+  transform-origin: left center;
+  transform: scaleX(0);
 }
 
 .fluid-carousel__dots {
@@ -228,23 +230,26 @@
 }
 
 .fluid-carousel__dot {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   padding: 0;
-  border: var(--rule) solid var(--ink);
-  border-radius: 0;
-  background: var(--paper-card);
+  border: none;
+  border-radius: 999px;
+  background: var(--type-muted);
+  opacity: 0.45;
   cursor: pointer;
-  transition: width 220ms ease, background 220ms ease;
+  transition: width 320ms var(--ease-out), background 320ms var(--ease-out),
+    opacity 320ms var(--ease-out);
 }
 
 .fluid-carousel__dot:hover {
-  background: var(--coral-light);
+  opacity: 1;
 }
 
 .fluid-carousel__dot.is-selected {
   width: 26px;
-  background: var(--ink);
+  background: var(--orange);
+  opacity: 1;
 }
 
 @media (max-width: 768px) {

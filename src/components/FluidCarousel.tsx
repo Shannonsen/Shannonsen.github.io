@@ -33,10 +33,15 @@ const slidesFor = (filter: Filter) =>
 // Scaled by slide count so the curve does not change shape when slides are added.
 const TWEEN_FACTOR_BASE = 0.42
 
-const MAX_ROTATE = 42
+const MAX_ROTATE = 34
 const MAX_TRANSLATE_Z = 140
-const MAX_SCALE_DROP = 0.22
-const MAX_OPACITY_DROP = 0.5
+const MAX_SCALE_DROP = 0.18
+const MAX_OPACITY_DROP = 0.62
+
+// Inner layers slide against the card as it travels. Each element carries a data-depth, and
+// the deepest ones lag furthest behind — which is what reads as flow rather than as a slide
+// arriving all in one piece.
+const PARALLAX_PX = 90
 // Blur is at odds with a flat graphic language, but it is the cue that makes the planes
 // separate. Kept low enough that the cards still look printed.
 const MAX_BLUR = 2
@@ -58,6 +63,8 @@ export function FluidCarousel() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const slides = useMemo(() => slidesFor(filter), [filter])
   const tweenNodes = useRef<HTMLElement[]>([])
+  const tweenLayers = useRef<{ el: HTMLElement; depth: number }[][]>([])
+  const progressRef = useRef<HTMLDivElement>(null)
   const tweenFactor = useRef(0)
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
@@ -92,10 +99,18 @@ export function FluidCarousel() {
     const motionQuery = window.matchMedia(REDUCED_MOTION_QUERY)
 
     const setTweenNodes = (api: EmblaCarouselType) => {
-      tweenNodes.current = api
+      const inners = api
         .slideNodes()
         .map((node) => node.querySelector('.fluid-carousel__inner') as HTMLElement)
         .filter(Boolean)
+      tweenNodes.current = inners
+      // Collected once per re-init rather than queried every frame.
+      tweenLayers.current = inners.map((inner) =>
+        Array.from(inner.querySelectorAll<HTMLElement>('[data-depth]')).map((el) => ({
+          el,
+          depth: Number(el.dataset.depth) || 0,
+        })),
+      )
     }
 
     const setTweenFactor = (api: EmblaCarouselType) => {
@@ -144,6 +159,9 @@ export function FluidCarousel() {
             node.style.transform = 'none'
             node.style.opacity = '1'
             node.style.filter = 'none'
+            tweenLayers.current[slideIndex]?.forEach(({ el }) => {
+              el.style.transform = 'none'
+            })
             return
           }
 
@@ -155,8 +173,16 @@ export function FluidCarousel() {
           ].join(' ')
           node.style.opacity = `${1 - magnitude * MAX_OPACITY_DROP}`
           node.style.filter = `blur(${magnitude * MAX_BLUR}px)`
+
+          tweenLayers.current[slideIndex]?.forEach(({ el, depth }) => {
+            el.style.transform = `translateX(${distance * depth * PARALLAX_PX}px)`
+          })
         })
       })
+
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${clamp(scrollProgress, 0, 1)})`
+      }
     }
 
     const onSelect = (api: EmblaCarouselType) => setSelectedIndex(api.selectedScrollSnap())
@@ -214,7 +240,7 @@ export function FluidCarousel() {
               aria-label={`${index + 1} of ${slides.length}: ${slide.section}`}
             >
               <article className="fluid-carousel__inner">
-                <span className={`fluid-carousel__badge is-${slide.kind}`}>
+                <span className={`fluid-carousel__badge is-${slide.kind}`} data-depth="1">
                   {slide.section}
                 </span>
                 <SlideCard slide={slide} />
@@ -235,6 +261,10 @@ export function FluidCarousel() {
             <path fill="currentColor" d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
           </svg>
         </button>
+
+        <div className="fluid-carousel__rail" aria-hidden="true">
+          <div className="fluid-carousel__rail-fill" ref={progressRef} />
+        </div>
 
         <div className="fluid-carousel__dots">
           {slides.map((slide, index) => (
@@ -268,9 +298,9 @@ function SlideCard({ slide }: { slide: Slide }) {
   if (slide.kind === 'skills') {
     return (
       <>
-        <h2 className="fluid-carousel__title">What I work with</h2>
-        <p className="fluid-carousel__lead">{profile.bio}</p>
-        <ul className="fluid-carousel__groups">
+        <h2 className="fluid-carousel__title" data-depth="0.6">What I work with</h2>
+        <p className="fluid-carousel__lead" data-depth="0.3">{profile.bio}</p>
+        <ul className="fluid-carousel__groups" data-depth="0.15">
           {skillGroups.map((group) => (
             <li key={group.label} className="fluid-carousel__group">
               <h3>{group.label}</h3>
@@ -292,10 +322,10 @@ function SlideCard({ slide }: { slide: Slide }) {
     const entry = experience[slide.index]
     return (
       <>
-        <p className="fluid-carousel__period">{entry.period}</p>
-        <h2 className="fluid-carousel__title">{entry.role}</h2>
-        <p className="fluid-carousel__company">{entry.company}</p>
-        <p className="fluid-carousel__lead">{entry.summary}</p>
+        <p className="fluid-carousel__period" data-depth="0.8">{entry.period}</p>
+        <h2 className="fluid-carousel__title" data-depth="0.6">{entry.role}</h2>
+        <p className="fluid-carousel__company" data-depth="0.45">{entry.company}</p>
+        <p className="fluid-carousel__lead" data-depth="0.3">{entry.summary}</p>
       </>
     )
   }
@@ -303,9 +333,9 @@ function SlideCard({ slide }: { slide: Slide }) {
   const project = projects[slide.index]
   return (
     <>
-      <h2 className="fluid-carousel__title">{project.name}</h2>
-      <p className="fluid-carousel__lead">{project.description}</p>
-      <ul className="fluid-carousel__tags">
+      <h2 className="fluid-carousel__title" data-depth="0.6">{project.name}</h2>
+      <p className="fluid-carousel__lead" data-depth="0.3">{project.description}</p>
+      <ul className="fluid-carousel__tags" data-depth="0.15">
         {project.tech.map((item) => (
           <li key={item} className="fluid-carousel__tag">
             {item}

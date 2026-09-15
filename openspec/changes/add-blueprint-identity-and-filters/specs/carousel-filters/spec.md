@@ -14,7 +14,7 @@ The carousel SHALL be preceded by a row of pills, one per section plus an All pi
 - **WHEN** the carousel is visible
 - **THEN** a pill row above it offers All, Skills, Experience and Projects
 - **AND** All is selected initially
-- **AND** each section pill carries its section's texture
+- **AND** every pill carries the same accent treatment, naming its section in words
 
 #### Scenario: Selected pill is distinguishable
 

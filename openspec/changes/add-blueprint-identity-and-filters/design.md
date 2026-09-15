@@ -35,16 +35,11 @@ component; custom properties reach them without a build step or a runtime provid
 cascade into the imperative styles the carousel tween writes. `src/styles/tokens.css` is
 imported once from `index.css`.
 
-**Sections are textures, not hues.** A two-colour palette has no hue left to spend on
-distinguishing sections, so each takes a riso texture: Skills solid, Experience hatched,
-Projects dotted. The textures live as `--pattern-*` tokens and are applied identically to the
-pill and the badge, so the pill teaches the badge.
-
-The obvious failure mode is text over a texture. It is avoided by hatching coral against a
-*lighter* coral rather than against paper: both tones sit above the ink laid over them, so the
-worst contrast anywhere on a patterned block is 6.75:1 rather than swinging between legible and
-unreadable stripe by stripe. Texture is decorative reinforcement only — every block still names
-its section in text, and no state depends on resolving a texture.
+**Sections stop being colour-coded.** Two earlier attempts spent signal on distinguishing the
+three sections — first hue, then riso texture. Both were solving a problem the content does not
+have: each badge already says "Skills", "Experience" or "Projects". The label is also the only
+signal that survives being read aloud or seen by someone who cannot separate two hues. So every
+badge is orange, and the accent is spent on pointing rather than on categorising.
 
 **Hard shadows via a token pair.** `--shadow-hard: 4px 4px 0 var(--ink)` and a `--shadow-hard-lg`
 for the intro window. Pressed states translate by the offset and drop the shadow, so a button
@@ -79,17 +74,27 @@ previous index and lands mid-set on a shorter list.
 depth cue that makes the cover flow read. It drops from 3.2px to 2px: enough to separate the
 planes, little enough that the cards still look printed.
 
-**Coral needs two tones.** No single coral does both jobs. The true coral `#ff6f61` is
-excellent as a fill — ink on it is 6.75:1 — but as text on paper it is 2.68:1 and fails AA. A
-coral dark enough to pass as text (`#c4402f`, 5.01:1) no longer reads as coral when used as a
-fill. So `--coral` fills and `--coral-deep` sets type, and a third `--coral-light` supplies the
-second tone of the textures.
+**The two colours divide the work, which is why this pairing needs no second tone.** Measuring
+five blue/orange pairs showed the same shape every time: deep blues are excellent as type
+(10-12:1 on a light ground, 11-14:1 under white) while oranges fail as type (2.2-3.1:1) and
+excel as fills (5.3-7.4:1). Rather than fight that, the palette assigns it — bone tints set all
+type, orange only ever fills. That removes the two-token problem the previous palettes both hit.
+
+`#0f2c52` with `#ff7a2f` was chosen over the other four because it is the only pair where the
+orange is legible *directly on* the blue (5.38:1). The others range from 3.57 down to 1.31, so
+the two colours could never touch. On a blueprint ground they touch constantly.
+
+**Blueprint, because the grid was already there.** The graph paper predates this palette. A deep
+blue ground turns it from decoration into the subject: the page becomes a drafting sheet. The
+grid inverts to light rules on blue at 7%/16%.
 
 ## Risks / Trade-offs
 
-- **Textures are noisier than hue at badge size.** A 7px hatch on a ~24px badge shows about
-  three stripes; below that it turns to mush. If the badge ever shrinks, the texture pitch has
-  to grow, not shrink with it.
+- **Frameless type sits directly on the grid.** The grid is at 7%/16% white, faint enough that
+  body copy at 8.95:1 holds, but any increase in grid strength erodes text contrast directly —
+  there is no card fill to protect it any more.
+- **A dark ground is a commitment.** The palette is defined against the blueprint; going back
+  to a light page is a rewrite, not a token swap.
 - **Contrast measured, not eyeballed.** Every palette colour was checked against paper and ink.
   Yellow (1.65:1 against paper) is only ever a fill under ink. The orange needed two tokens.
   Adding a colour to the palette means repeating that check.

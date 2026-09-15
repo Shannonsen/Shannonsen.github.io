@@ -39,6 +39,16 @@
 - [x] 7.1 Redraw the graph paper as a crisp SVG tile instead of stacked gradient hard stops.
 - [x] 7.2 Drop the intro overlay's backdrop blur, which was turning the 1px rules into moiré.
 
+## 8. Blueprint and flow (review feedback)
+
+- [x] 8.1 Replace the palette with the blueprint ground, orange accent and bone type tints;
+      invert the grid to light rules on blue.
+- [x] 8.2 Drop section colour-coding entirely — one accent, sections named in words.
+- [x] 8.3 Make the carousel slides frameless: no fill, rule or shadow.
+- [x] 8.4 Add per-layer parallax inside each card, driven by the existing tween.
+- [x] 8.5 Add a continuous progress rail alongside the dots.
+- [x] 8.6 Restyle the intro window, pills and controls for the blueprint.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.
@@ -46,6 +56,6 @@
 - [ ] 6.3 Manually verify: pills filter and restore, one-slide case, grid legibility, layout
       at 375px, reduced motion.
 
-> 6.3 note: the Chrome extension would not connect across four attempts this session, so the
-> manual pass is pending on the developer's machine. Contrast was verified numerically rather
-> than visually — see the foreground decision in design.md.
+> 6.3 note: the Chrome extension would not connect at any point this session, so every visual
+> pass is pending on the developer's machine. Contrast was verified numerically throughout —
+> see the palette decisions in design.md.

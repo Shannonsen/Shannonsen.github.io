@@ -1,49 +1,39 @@
 /*
- * Bauhaus design tokens. Every colour, rule weight and shadow in the site comes from here —
+ * Blueprint design tokens. Every colour, rule weight and measure in the site comes from here —
  * components never hard-code a hex value, so recolouring is a one-file change.
+ *
+ * The palette divides the work: blue is the ground and orange is the accent, and type is set
+ * in tints of bone. Orange is never used as type on the ground (5.38:1 is fine for a fill but
+ * the hue vibrates badly at text sizes); blue is never used as type on the ground at all.
  */
 :root {
-  /* Palette — ink and coral on paper. Two tones of coral rather than one: the real coral is
-     only usable as a fill (ink on it is 6.75:1); as text on paper it is 2.68:1 and fails AA,
-     so anything set in coral uses the deep tone (5.01:1). */
-  --coral: #ff6f61;
-  --coral-light: #ff9d91;
-  --coral-deep: #c4402f;
+  /* Ground and accent */
+  --blueprint: #0f2c52;
+  --orange: #ff7a2f;
+  --bone: #f4f1e8;
 
-  /* Ground and ink */
-  --paper: #f5f2ea;
-  --paper-card: #fffdf7;
-  --ink: #141414;
-  --ink-soft: #4a4640;
-  --ink-faint: #8a847a;
+  /* Type tints on the blueprint ground, with their measured contrast. */
+  --type-strong: #f4f1e8; /* 12.38:1 — headings */
+  --type-body: #c3d0e2; /*   8.95:1 — body copy */
+  --type-muted: #8b9db8; /*  5.07:1 — labels and meta, still AA */
 
-  /* Sections are told apart by a riso pattern, not by hue. Both tones are lighter than the
-     ink laid over them, so the worst case anywhere on a patterned block is 6.75:1. */
-  --pattern-hatch: repeating-linear-gradient(
-    45deg,
-    var(--coral-light) 0 3px,
-    transparent 3px 7px
-  );
-  --pattern-dots: radial-gradient(var(--coral-light) 1.5px, transparent 1.7px);
-  --pattern-dots-size: 7px 7px;
-
-  --color-section: var(--coral);
-  --on-section: var(--ink);
+  /* Laid over the orange fill. Blueprint rather than ink: 5.38:1 clears AA and keeps the
+     whole site to two colours. */
+  --on-orange: var(--blueprint);
 
   /* Rules */
   --rule: 2px;
   --rule-thick: 3px;
   --radius: 2px;
+  --rule-ink: rgba(244, 241, 232, 0.22);
 
-  /* Hard offset shadows — no blur. Pressed states translate by the offset and drop the
-     shadow, so a control physically sinks onto the page. */
-  --shadow-hard: 4px 4px 0 var(--ink);
-  --shadow-hard-lg: 8px 8px 0 var(--ink);
-
-  /* Graph paper. Two scales: one alone reads as noise or as a plain box, two read as
-     engineering paper. The rules themselves are drawn in the SVG tile in index.css — a data
-     URI cannot read a custom property — so only the tile size lives here, and it must stay a
-     whole multiple of the minor step or the tile seam shows as a doubled rule. */
-  --grid-minor: 32px;
+  /* Graph paper. Two scales: one alone reads as either noise or a plain box, two read as
+     drafting paper. The rules are drawn in the SVG tile in index.css — a data URI cannot read
+     a custom property — so only the tile size lives here, and it must stay a whole multiple of
+     the minor step or the tile seam shows as a doubled rule. */
+  --grid-minor: 32px; /* the tile must stay a whole multiple of this */
   --grid-major: 128px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
