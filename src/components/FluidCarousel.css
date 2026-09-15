@@ -6,9 +6,9 @@
 }
 
 .fluid-carousel:focus-visible {
-  outline: 2px solid #667eea;
+  outline: var(--rule-thick) solid var(--blue);
   outline-offset: 8px;
-  border-radius: 20px;
+  border-radius: var(--radius);
 }
 
 .fluid-carousel__viewport {
@@ -62,11 +62,10 @@
   display: flex;
   flex-direction: column;
   padding: 2.25rem;
-  border-radius: 20px;
-  background: #ffffff;
-  box-shadow:
-    0 0 0 1px rgba(15, 23, 42, 0.05),
-    0 24px 48px -16px rgba(15, 23, 42, 0.28);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+  border: var(--rule) solid var(--ink);
+  box-shadow: var(--shadow-hard-lg);
   will-change: transform, opacity, filter;
   backface-visibility: hidden;
 }
@@ -74,34 +73,35 @@
 .fluid-carousel__badge {
   align-self: flex-start;
   padding: 0.25rem 0.7rem;
-  border-radius: 999px;
+  border-radius: var(--radius);
+  border: var(--rule) solid var(--ink);
   font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 1.1rem;
 }
 
 .fluid-carousel__badge.is-skills {
-  background: rgba(102, 126, 234, 0.12);
-  color: #4f5bd5;
+  background: var(--color-skills);
+  color: var(--on-skills);
 }
 
 .fluid-carousel__badge.is-experience {
-  background: rgba(245, 87, 108, 0.12);
-  color: #d9436a;
+  background: var(--color-experience);
+  color: var(--on-experience);
 }
 
 .fluid-carousel__badge.is-project {
-  background: rgba(0, 178, 190, 0.14);
-  color: #0f8b95;
+  background: var(--color-project);
+  color: var(--on-project);
 }
 
 .fluid-carousel__title {
   font-size: 1.7rem;
   font-weight: 800;
   letter-spacing: -0.015em;
-  color: #1e293b;
+  color: var(--ink);
   margin: 0;
 }
 
@@ -110,20 +110,20 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: var(--ink-faint);
   margin: 0 0 0.35rem;
 }
 
 .fluid-carousel__company {
   font-size: 1rem;
   font-weight: 600;
-  color: #667eea;
+  color: var(--orange-deep);
   margin: 0.35rem 0 0;
 }
 
 .fluid-carousel__lead {
   margin: 0.9rem 0 0;
-  color: #475569;
+  color: var(--ink-soft);
   line-height: 1.65;
   font-size: 0.97rem;
 }
@@ -142,7 +142,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: var(--ink-faint);
   margin: 0 0 0.5rem;
 }
 
@@ -157,9 +157,10 @@
 
 .fluid-carousel__tag {
   padding: 0.25rem 0.6rem;
-  border-radius: 7px;
-  background: #f1f5f9;
-  color: #334155;
+  border-radius: var(--radius);
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
   font-size: 0.82rem;
   font-weight: 500;
 }
@@ -170,13 +171,13 @@
   gap: 0.35rem;
   margin-top: auto;
   padding-top: 1.25rem;
-  color: #2563eb;
-  font-weight: 600;
+  color: var(--blue);
+  font-weight: 700;
   font-size: 0.92rem;
 }
 
 .fluid-carousel__link:hover {
-  color: #1d4ed8;
+  color: var(--red);
   text-decoration: underline;
 }
 
@@ -197,24 +198,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #e2e8f0;
-  border-radius: 50%;
-  background: #ffffff;
-  color: #64748b;
+  border: var(--rule) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+  color: var(--ink);
   cursor: pointer;
-  transition: background 200ms ease, color 200ms ease, border-color 200ms ease,
-    transform 200ms ease;
+  box-shadow: var(--shadow-hard);
+  transition: background 140ms ease, color 140ms ease, transform 120ms ease,
+    box-shadow 120ms ease;
 }
 
 .fluid-carousel__arrow:hover {
-  background: #667eea;
-  border-color: #667eea;
-  color: #ffffff;
-  transform: scale(1.08);
+  background: var(--yellow);
 }
 
 .fluid-carousel__arrow:active {
-  transform: scale(0.95);
+  transform: translate(4px, 4px);
+  box-shadow: none;
 }
 
 .fluid-carousel__dots {
@@ -224,23 +224,23 @@
 }
 
 .fluid-carousel__dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   padding: 0;
-  border: none;
-  border-radius: 999px;
-  background: #cbd5e1;
+  border: var(--rule) solid var(--ink);
+  border-radius: 0;
+  background: var(--paper-card);
   cursor: pointer;
-  transition: width 260ms ease, background 260ms ease;
+  transition: width 220ms ease, background 220ms ease;
 }
 
 .fluid-carousel__dot:hover {
-  background: #94a3b8;
+  background: var(--yellow);
 }
 
 .fluid-carousel__dot.is-selected {
   width: 26px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--ink);
 }
 
 @media (max-width: 768px) {

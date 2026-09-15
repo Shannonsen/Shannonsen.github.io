@@ -1,8 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import type { EmblaCarouselType } from 'embla-carousel'
 import { experience, projects, skillGroups } from '../data/portfolio'
 import { profile } from '../data/profile'
+import { FilterPills } from './FilterPills'
+import type { Filter } from '../data/sections'
 import './FluidCarousel.css'
 
 type Slide =
@@ -10,7 +12,7 @@ type Slide =
   | { kind: 'experience'; section: 'Experience'; index: number }
   | { kind: 'project'; section: 'Projects'; index: number }
 
-const slides: Slide[] = [
+const ALL_SLIDES: Slide[] = [
   { kind: 'skills', section: 'Skills' },
   ...experience.map((_, index) => ({
     kind: 'experience' as const,
@@ -24,6 +26,9 @@ const slides: Slide[] = [
   })),
 ]
 
+const slidesFor = (filter: Filter) =>
+  filter === 'All' ? ALL_SLIDES : ALL_SLIDES.filter((slide) => slide.section === filter)
+
 // How fast a slide reaches its fully-receded state as it leaves the center.
 // Scaled by slide count so the curve does not change shape when slides are added.
 const TWEEN_FACTOR_BASE = 0.42
@@ -32,7 +37,9 @@ const MAX_ROTATE = 42
 const MAX_TRANSLATE_Z = 140
 const MAX_SCALE_DROP = 0.22
 const MAX_OPACITY_DROP = 0.5
-const MAX_BLUR = 3.2
+// Blur is at odds with a flat graphic language, but it is the cue that makes the planes
+// separate. Kept low enough that the cards still look printed.
+const MAX_BLUR = 2
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(Math.max(value, min), max)
@@ -47,7 +54,9 @@ export function FluidCarousel() {
     skipSnaps: false,
   })
 
+  const [filter, setFilter] = useState<Filter>('All')
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const slides = useMemo(() => slidesFor(filter), [filter])
   const tweenNodes = useRef<HTMLElement[]>([])
   const tweenFactor = useRef(0)
 
@@ -67,6 +76,14 @@ export function FluidCarousel() {
       scrollNext()
     }
   }
+
+  useEffect(() => {
+    if (!emblaApi) return
+    // Embla's watchSlides observer would re-init on its own, but asynchronously — doing it
+    // here means the re-centre below cannot run against the previous slide set.
+    emblaApi.reInit()
+    emblaApi.scrollTo(0, true)
+  }, [emblaApi, filter])
 
   useEffect(() => {
     if (!emblaApi) return
@@ -160,6 +177,7 @@ export function FluidCarousel() {
 
     emblaApi
       .on('reInit', onReInit)
+      .on('reInit', onSelect)
       .on('scroll', tween)
       .on('slideFocus', tween)
       .on('select', onSelect)
@@ -168,6 +186,7 @@ export function FluidCarousel() {
       motionQuery.removeEventListener('change', onMotionPreferenceChange)
       emblaApi
         .off('reInit', onReInit)
+        .off('reInit', onSelect)
         .off('scroll', tween)
         .off('slideFocus', tween)
         .off('select', onSelect)
@@ -182,6 +201,8 @@ export function FluidCarousel() {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
+      <FilterPills active={filter} onChange={setFilter} />
+
       <div className="fluid-carousel__viewport" ref={emblaRef}>
         <div className="fluid-carousel__container">
           {slides.map((slide, index) => (

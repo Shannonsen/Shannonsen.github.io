@@ -1,0 +1,107 @@
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Square, ink-ruled blocks rather than rounded capsules — the Bauhaus register. */
+.filter-pill {
+  position: relative;
+  padding: 0.55rem 1.4rem;
+  border: var(--rule) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--shadow-hard);
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease,
+    color 120ms ease;
+}
+
+.filter-pill:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+/* The active pill sinks onto the page: it moves by the shadow offset and loses the shadow,
+   so the state reads as pressed rather than merely coloured. */
+.filter-pill.is-active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+  color: var(--paper-card);
+}
+
+.filter-pill.is-active.is-all {
+  background: var(--ink);
+}
+
+.filter-pill.is-active.is-skills {
+  background: var(--color-skills);
+  color: var(--on-skills);
+}
+
+.filter-pill.is-active.is-experience {
+  background: var(--color-experience);
+  color: var(--on-experience);
+}
+
+.filter-pill.is-active.is-project {
+  background: var(--color-project);
+  color: var(--on-project);
+}
+
+/* Colour alone must not carry the state, so an inactive pill still shows its section via a
+   marker underline while the active one is identified by the pressed geometry. */
+.filter-pill::after {
+  content: '';
+  position: absolute;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: 0.3rem;
+  height: 3px;
+  background: transparent;
+}
+
+.filter-pill.is-skills::after {
+  background: var(--color-skills);
+}
+
+.filter-pill.is-experience::after {
+  background: var(--color-experience);
+}
+
+.filter-pill.is-project::after {
+  background: var(--color-project);
+}
+
+.filter-pill.is-active::after {
+  background: transparent;
+}
+
+@media (max-width: 480px) {
+  .filter-pills {
+    gap: 0.5rem;
+  }
+
+  .filter-pill {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filter-pill {
+    transition: none;
+  }
+
+  .filter-pill:hover {
+    transform: none;
+    box-shadow: var(--shadow-hard);
+  }
+}

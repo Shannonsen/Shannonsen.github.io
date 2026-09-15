@@ -1,11 +1,13 @@
+@import './styles/tokens.css';
+
 :root {
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light;
-  color: #213547;
-  background-color: #f8fafc;
+  color: var(--ink);
+  background-color: var(--paper);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -23,7 +25,18 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #f8fafc 0%, #e2e8f0 100%);
+  background-color: var(--paper);
+  /* Major rules first so they paint over the minor ones at the intersections. */
+  background-image:
+    linear-gradient(to right, var(--grid-major-ink) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-major-ink) 1px, transparent 1px),
+    linear-gradient(to right, var(--grid-minor-ink) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-minor-ink) 1px, transparent 1px);
+  background-size:
+    var(--grid-major) var(--grid-major),
+    var(--grid-major) var(--grid-major),
+    var(--grid-minor) var(--grid-minor),
+    var(--grid-minor) var(--grid-minor);
 }
 
 #root {
@@ -31,40 +44,36 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
-  font-weight: 700;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 a {
-  font-weight: 500;
-  color: #667eea;
-  text-decoration: inherit;
-  transition: color 0.3s ease;
+  font-weight: 600;
+  color: var(--blue);
+  text-decoration: none;
+  transition: color 160ms ease;
 }
 
 a:hover {
-  color: #764ba2;
+  color: var(--red);
+  text-decoration: underline;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border-radius: var(--radius);
+  border: var(--rule) solid var(--ink);
   padding: 0.6em 1.2em;
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 700;
   font-family: inherit;
-  background-color: #f9f9f9;
+  background-color: var(--paper-card);
+  color: var(--ink);
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-button:hover {
-  border-color: #667eea;
-}
-
-button:focus,
 button:focus-visible {
-  outline: 2px solid #667eea;
+  outline: var(--rule-thick) solid var(--blue);
   outline-offset: 2px;
 }
-

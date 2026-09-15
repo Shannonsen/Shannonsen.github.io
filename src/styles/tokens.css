@@ -1,0 +1,49 @@
+/*
+ * Bauhaus design tokens. Every colour, rule weight and shadow in the site comes from here —
+ * components never hard-code a hex value, so recolouring is a one-file change.
+ */
+:root {
+  /* Palette */
+  --orange: #e8622a;
+  /* Orange as a fill only carries ink text (5.45:1). As text on paper it needs darkening:
+     #e8622a on paper is 3.32:1, which fails AA. */
+  --orange-deep: #b8471a;
+  --red: #d42b1f;
+  --blue: #1b54a6;
+  --yellow: #f2c230;
+  --green: #2e7d4f;
+
+  /* Ground and ink */
+  --paper: #f5f2ea;
+  --paper-card: #fffdf7;
+  --ink: #141414;
+  --ink-soft: #4a4640;
+  --ink-faint: #8a847a;
+
+  /* Section colours. Components reference these, not the palette directly, so reassigning
+     a section is one line and stays consistent between its pill and its badge. */
+  --color-skills: var(--blue);
+  --color-experience: var(--orange);
+  --color-project: var(--green);
+  /* Foreground to place on each section fill, chosen per colour for contrast. */
+  --on-skills: var(--paper-card);
+  --on-experience: var(--ink);
+  --on-project: var(--paper-card);
+
+  /* Rules */
+  --rule: 2px;
+  --rule-thick: 3px;
+  --radius: 2px;
+
+  /* Hard offset shadows — no blur. Pressed states translate by the offset and drop the
+     shadow, so a control physically sinks onto the page. */
+  --shadow-hard: 4px 4px 0 var(--ink);
+  --shadow-hard-lg: 8px 8px 0 var(--ink);
+
+  /* Graph paper. Two scales: one alone reads as noise or as a plain box, two read as
+     engineering paper. Kept faint enough that text over it holds its contrast. */
+  --grid-minor: 28px;
+  --grid-major: 140px;
+  --grid-minor-ink: rgba(20, 20, 20, 0.06);
+  --grid-major-ink: rgba(20, 20, 20, 0.13);
+}

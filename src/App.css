@@ -27,18 +27,17 @@
 }
 
 .welcome-title {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--ink);
   margin-bottom: 1rem;
   font-size: 3rem;
   font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
 }
 
 .subtitle {
   font-size: 1.2rem;
-  color: #64748b;
+  color: var(--ink-soft);
   margin-top: 0.5rem;
 }
 
@@ -54,11 +53,11 @@
   margin-top: 4rem;
   padding: 2rem 0;
   text-align: center;
-  border-top: 1px solid #e2e8f0;
+  border-top: var(--rule) solid var(--ink);
 }
 
 .app-footer p {
-  color: #94a3b8;
+  color: var(--ink-faint);
 }
 
 @media (max-width: 768px) {
