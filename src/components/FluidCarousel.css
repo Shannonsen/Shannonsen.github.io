@@ -1,0 +1,271 @@
+.fluid-carousel {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  outline: none;
+}
+
+.fluid-carousel:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 8px;
+  border-radius: 20px;
+}
+
+.fluid-carousel__viewport {
+  overflow: hidden;
+  /* Far enough back that the tilt reads as depth instead of distortion. */
+  perspective: 1600px;
+  padding: 2.5rem 0;
+}
+
+.fluid-carousel__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  transform-style: preserve-3d;
+}
+
+.fluid-carousel__slide {
+  flex: 0 0 62%;
+  min-width: 0;
+  padding: 0 0.75rem;
+  transform-style: preserve-3d;
+}
+
+/* No transition here on purpose: the transform is rewritten every scroll frame, and a
+   transition on top of it would lag behind the drag. */
+.fluid-carousel__inner {
+  height: 100%;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  padding: 2.25rem;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 1px rgba(15, 23, 42, 0.05),
+    0 24px 48px -16px rgba(15, 23, 42, 0.28);
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+}
+
+.fluid-carousel__badge {
+  align-self: flex-start;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+}
+
+.fluid-carousel__badge.is-skills {
+  background: rgba(102, 126, 234, 0.12);
+  color: #4f5bd5;
+}
+
+.fluid-carousel__badge.is-experience {
+  background: rgba(245, 87, 108, 0.12);
+  color: #d9436a;
+}
+
+.fluid-carousel__badge.is-project {
+  background: rgba(0, 178, 190, 0.14);
+  color: #0f8b95;
+}
+
+.fluid-carousel__title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: #1e293b;
+  margin: 0;
+}
+
+.fluid-carousel__period {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin: 0 0 0.35rem;
+}
+
+.fluid-carousel__company {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #667eea;
+  margin: 0.35rem 0 0;
+}
+
+.fluid-carousel__lead {
+  margin: 0.9rem 0 0;
+  color: #475569;
+  line-height: 1.65;
+  font-size: 0.97rem;
+}
+
+.fluid-carousel__groups {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1.5rem;
+}
+
+.fluid-carousel__group h3 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin: 0 0 0.5rem;
+}
+
+.fluid-carousel__tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.fluid-carousel__tag {
+  padding: 0.25rem 0.6rem;
+  border-radius: 7px;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.fluid-carousel__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.fluid-carousel__link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* Controls */
+
+.fluid-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.fluid-carousel__arrow {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #64748b;
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.fluid-carousel__arrow:hover {
+  background: #667eea;
+  border-color: #667eea;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+.fluid-carousel__arrow:active {
+  transform: scale(0.95);
+}
+
+.fluid-carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fluid-carousel__dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: #cbd5e1;
+  cursor: pointer;
+  transition: width 260ms ease, background 260ms ease;
+}
+
+.fluid-carousel__dot:hover {
+  background: #94a3b8;
+}
+
+.fluid-carousel__dot.is-selected {
+  width: 26px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+@media (max-width: 768px) {
+  .fluid-carousel__slide {
+    flex: 0 0 85%;
+    padding: 0 0.5rem;
+  }
+
+  .fluid-carousel__viewport {
+    perspective: 1200px;
+    padding: 1.5rem 0;
+  }
+
+  .fluid-carousel__inner {
+    min-height: 340px;
+    padding: 1.6rem;
+  }
+
+  .fluid-carousel__title {
+    font-size: 1.4rem;
+  }
+
+  .fluid-carousel__groups {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .fluid-carousel__controls {
+    gap: 0.9rem;
+  }
+}
+
+/* A shallow 3D tilt is still vestibular motion, so drop the effect rather than soften it.
+   The JS tween also checks this query and stops writing transforms. */
+@media (prefers-reduced-motion: reduce) {
+  .fluid-carousel__inner {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    will-change: auto;
+  }
+
+  .fluid-carousel__arrow,
+  .fluid-carousel__dot {
+    transition: none;
+  }
+
+  .fluid-carousel__arrow:hover {
+    transform: none;
+  }
+}
