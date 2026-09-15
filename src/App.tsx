@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NameCarousel } from './components/NameCarousel'
+import { FluidCarousel } from './components/FluidCarousel'
 import { IntroWindow } from './components/IntroWindow'
 import { profile } from './data/profile'
 import { Div, Heading, Text } from '@hopper-ui/components'
@@ -26,12 +26,7 @@ function App() {
         </header>
 
         <main className="main-content">
-          <NameCarousel />
-
-          <Div className="info-section">
-            <Heading size="lg">About Me</Heading>
-            <Text>{profile.bio}</Text>
-          </Div>
+          <FluidCarousel />
         </main>
 
         <footer className="app-footer">
