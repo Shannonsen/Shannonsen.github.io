@@ -9,7 +9,7 @@
   max-width: var(--sheet-width);
   margin: 0 auto;
   padding: var(--sheet-gutter);
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -32,7 +32,8 @@
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  flex: 1;
+  min-height: 0;
   width: 100%;
 }
 
@@ -89,5 +90,38 @@
 
   .subtitle {
     font-size: 1rem;
+  }
+}
+
+/* Static mode: the page is exactly one viewport tall and the carousel absorbs whatever the
+   header and footer leave. The header has to give up some of its size for that to fit on a
+   laptop — a locked page is only worth having if the content actually fits inside it. */
+@media (min-height: 700px) {
+  #root {
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .app-header {
+    padding: 0;
+    margin-bottom: 2rem;
+    flex: 0 0 auto;
+  }
+
+  .welcome-title {
+    font-size: 2.25rem;
+  }
+
+  .main-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    gap: 2rem;
+  }
+
+  .app-footer {
+    margin-top: 2rem;
+    padding: 1rem 0 0;
+    flex: 0 0 auto;
   }
 }

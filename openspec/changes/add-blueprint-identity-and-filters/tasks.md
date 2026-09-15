@@ -65,6 +65,16 @@
 - [x] 10.4 Snap the vertical measures to multiples of the 32px step.
 - [x] 10.5 ~~Draw the sheet edge with a shadow ring~~ — dropped with the sheet.
 
+## 11. Wheel input and static page (review feedback)
+
+- [x] 11.1 Add `embla-carousel-wheel-gestures` for continuous horizontal wheel and trackpad.
+- [x] 11.2 Add a vertical-wheel handler for mouse users, guarded against double-handling a
+      diagonal gesture.
+- [x] 11.3 Lock the page to one viewport height above 700px; scroll below it.
+- [x] 11.4 Make the carousel the flexible element so it absorbs the leftover height.
+- [x] 11.5 Fix `.app-container`'s `min-height: 100vh`, which made the page taller than the
+      viewport regardless of content.
+
 ## 6. Verification
 
 - [x] 6.1 `npm run lint` and `npm run build` pass.

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
+import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
 import type { EmblaCarouselType } from 'embla-carousel'
 import { experience, projects, skillGroups } from '../data/portfolio'
 import { profile } from '../data/profile'
@@ -42,6 +43,12 @@ const MAX_OPACITY_DROP = 0.62
 // the deepest ones lag furthest behind — which is what reads as flow rather than as a slide
 // arriving all in one piece.
 const PARALLAX_PX = 90
+
+// A mouse wheel only reports deltaY, and the page no longer scrolls vertically, so a plain
+// wheel would otherwise have nothing to do. The plugin handles the horizontal axis
+// continuously; this covers the vertical one in notches.
+const WHEEL_STEP = 40
+const WHEEL_COOLDOWN_MS = 220
 // Blur is at odds with a flat graphic language, but it is the cue that makes the planes
 // separate. Kept low enough that the cards still look printed.
 const MAX_BLUR = 2
@@ -52,13 +59,20 @@ const clamp = (value: number, min: number, max: number) =>
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)'
 
 export function FluidCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: 'center',
-    containScroll: false,
-    skipSnaps: false,
-  })
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: 'center',
+      containScroll: false,
+      skipSnaps: false,
+    },
+    // Continuous horizontal wheel and trackpad gestures. Its default axis is the carousel's
+    // own, so it claims x-dominant gestures and leaves vertical ones alone.
+    [WheelGesturesPlugin()],
+  )
 
+  const wheelAccum = useRef(0)
+  const wheelLockedUntil = useRef(0)
   const [filter, setFilter] = useState<Filter>('All')
   const [selectedIndex, setSelectedIndex] = useState(0)
   const slides = useMemo(() => slidesFor(filter), [filter])
@@ -73,6 +87,25 @@ export function FluidCarousel() {
     (index: number) => emblaApi?.scrollTo(index),
     [emblaApi],
   )
+
+  // Only vertical-dominant gestures: horizontal ones belong to the plugin, and reacting to
+  // both would move the carousel twice for one diagonal swipe.
+  const handleWheel = (event: React.WheelEvent<HTMLDivElement>) => {
+    if (!emblaApi) return
+    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return
+
+    const now = Date.now()
+    if (now < wheelLockedUntil.current) return
+
+    wheelAccum.current += event.deltaY
+    if (Math.abs(wheelAccum.current) < WHEEL_STEP) return
+
+    if (wheelAccum.current > 0) emblaApi.scrollNext()
+    else emblaApi.scrollPrev()
+
+    wheelAccum.current = 0
+    wheelLockedUntil.current = now + WHEEL_COOLDOWN_MS
+  }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'ArrowLeft') {
@@ -225,6 +258,7 @@ export function FluidCarousel() {
       aria-roledescription="carousel"
       aria-label="Skills, experience and projects"
       onKeyDown={handleKeyDown}
+      onWheel={handleWheel}
       tabIndex={0}
     >
       <FilterPills active={filter} onChange={setFilter} />

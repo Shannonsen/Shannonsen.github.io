@@ -253,6 +253,50 @@
   opacity: 1;
 }
 
+/* Static mode: the carousel is a flex column that fills whatever height is left, and the
+   slide stops declaring a fixed height of its own. */
+@media (min-height: 700px) {
+  .fluid-carousel {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .fluid-carousel__viewport {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .fluid-carousel__container {
+    height: 100%;
+  }
+
+  .fluid-carousel__slide {
+    height: 100%;
+  }
+
+  .fluid-carousel__inner {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* The bio is the one block that can outgrow a short viewport, so it gives way first rather
+     than pushing the skill groups out of the card. */
+  .fluid-carousel__lead {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
+  }
+
+  .fluid-carousel__controls {
+    flex: 0 0 auto;
+  }
+}
+
 @media (max-width: 768px) {
   .fluid-carousel__slide {
     flex: 0 0 85%;

@@ -21,11 +21,25 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
   background-color: var(--bone);
+  overscroll-behavior: none;
+}
+
+/* Static mode. Below this height the page scrolls normally rather than clipping content —
+   locking a viewport that cannot fit the layout would hide it, which is worse than scrolling. */
+@media (min-height: 700px) {
+  html,
+  body {
+    overflow: hidden;
+  }
 }
 
 #root {

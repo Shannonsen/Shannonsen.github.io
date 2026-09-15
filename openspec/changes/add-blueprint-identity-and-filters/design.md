@@ -128,11 +128,37 @@ orange stays light and every orange fill carries a 1px blue hairline, which supp
 blue rather than orange, since a hairline of orange on bone would barely register. Orange never
 sets type at all.
 
+**Wheel input needs both axes, from two mechanisms.** `embla-carousel-wheel-gestures` resolves
+its axis as `forceWheelAxis ?? engine.options.axis`, so on a horizontal carousel it claims
+x-dominant gestures and ignores vertical ones. That is right for a trackpad swipe and useless
+for a mouse wheel, which only reports `deltaY` — and once the page no longer scrolls vertically,
+a plain wheel would have nothing at all to do. So the plugin keeps the horizontal axis
+continuously, and a small handler covers the vertical one in notches, guarded on
+`|deltaY| > |deltaX|` so one diagonal gesture cannot be consumed by both.
+
+**Static page, with a floor.** The page locks to one viewport height above 700px and scrolls
+below it. Locking a viewport that cannot fit the layout does not make the layout smaller, it
+hides part of it, which is worse than scrolling. Inside the lock the carousel is the flexible
+element: header and footer take what they need and it absorbs the rest.
+
+Two consequences worth stating. The header gives up size in static mode — a locked page is only
+worth having if the content fits, and on a laptop viewport it otherwise does not. And vertical
+grid alignment cannot survive this: section edges are now positioned by a viewport height that
+is not a multiple of the step. Horizontal alignment — the column, the gutter, the carousel's
+edges — is unaffected, and that is the part that reads.
+
+Fixing this also removed a latent bug: `.app-container` carried `min-height: 100vh` inside a
+`#root` with 32px of padding, so the page was always 64px taller than the viewport and always
+scrolled a little, whatever the content.
+
 ## Risks / Trade-offs
 
 - **The measures are now load-bearing.** Changing the column width, the gutter, the carousel
   width or the bleed breaks the alignment unless the new value is a whole multiple of the step.
   The relationships are recorded in `tokens.css`, but nothing enforces them.
+- **Card content can outgrow a short viewport.** At the 700px floor the slide gets about 334px.
+  The bio clamps to four lines to give way first, but a longer bio or a fifth skill group would
+  clip rather than scroll.
 - **The bleed is finite.** Beyond a ~6400px viewport the grid would stop short. Raising
   `--grid-bleed` is safe only in multiples of the major step.
 - **Frameless type sits directly on the grid.** The grid is at 7%/15%, faint enough that body

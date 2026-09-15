@@ -83,3 +83,34 @@ Position SHALL be shown as continuous travel, not only as discrete steps.
 
 - **WHEN** the visitor drags part-way between two slides
 - **THEN** a progress indicator reflects that intermediate position rather than snapping
+
+### Requirement: Wheel and trackpad navigation
+
+The carousel SHALL respond to wheel and trackpad input on both axes.
+
+#### Scenario: Horizontal gesture
+
+- **WHEN** the visitor swipes horizontally on a trackpad over the carousel
+- **THEN** the carousel tracks the gesture continuously, as it does a drag
+
+#### Scenario: Vertical wheel
+
+- **WHEN** the visitor turns a mouse wheel over the carousel
+- **THEN** the carousel advances or retreats by one slide per notch
+- **AND** a single diagonal gesture never moves the carousel twice
+
+### Requirement: Static viewport
+
+On a viewport tall enough to hold it, the page SHALL occupy exactly one screen and SHALL NOT
+scroll.
+
+#### Scenario: A tall enough viewport
+
+- **WHEN** the viewport is at least 700px tall
+- **THEN** the page fills exactly that height and neither axis scrolls
+- **AND** the carousel absorbs whatever height the header and footer leave
+
+#### Scenario: A viewport too short to hold the layout
+
+- **WHEN** the viewport is shorter than that
+- **THEN** the page scrolls normally rather than clipping its content
