@@ -24,7 +24,7 @@ from the currently active filter.
 #### Scenario: Section identification
 
 - **WHEN** any card is shown
-- **THEN** it carries a badge naming its section, in that section's colour
+- **THEN** it carries a badge naming its section, in that section's texture
 
 #### Scenario: Slide set follows the filter
 

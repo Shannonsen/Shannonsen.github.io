@@ -41,19 +41,20 @@
   background: var(--ink);
 }
 
-.filter-pill.is-active.is-skills {
-  background: var(--color-skills);
-  color: var(--on-skills);
+.filter-pill.is-active.is-skills,
+.filter-pill.is-active.is-experience,
+.filter-pill.is-active.is-project {
+  background-color: var(--color-section);
+  color: var(--on-section);
 }
 
 .filter-pill.is-active.is-experience {
-  background: var(--color-experience);
-  color: var(--on-experience);
+  background-image: var(--pattern-hatch);
 }
 
 .filter-pill.is-active.is-project {
-  background: var(--color-project);
-  color: var(--on-project);
+  background-image: var(--pattern-dots);
+  background-size: var(--pattern-dots-size);
 }
 
 /* Colour alone must not carry the state, so an inactive pill still shows its section via a
@@ -69,19 +70,23 @@
 }
 
 .filter-pill.is-skills::after {
-  background: var(--color-skills);
+  background-color: var(--color-section);
 }
 
 .filter-pill.is-experience::after {
-  background: var(--color-experience);
+  background-color: var(--color-section);
+  background-image: var(--pattern-hatch);
 }
 
 .filter-pill.is-project::after {
-  background: var(--color-project);
+  background-color: var(--color-section);
+  background-image: var(--pattern-dots);
+  background-size: var(--pattern-dots-size);
 }
 
 .filter-pill.is-active::after {
   background: transparent;
+  background-image: none;
 }
 
 @media (max-width: 480px) {

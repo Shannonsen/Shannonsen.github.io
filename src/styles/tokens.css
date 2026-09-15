@@ -3,15 +3,12 @@
  * components never hard-code a hex value, so recolouring is a one-file change.
  */
 :root {
-  /* Palette */
-  --orange: #e8622a;
-  /* Orange as a fill only carries ink text (5.45:1). As text on paper it needs darkening:
-     #e8622a on paper is 3.32:1, which fails AA. */
-  --orange-deep: #b8471a;
-  --red: #d42b1f;
-  --blue: #1b54a6;
-  --yellow: #f2c230;
-  --green: #2e7d4f;
+  /* Palette — ink and coral on paper. Two tones of coral rather than one: the real coral is
+     only usable as a fill (ink on it is 6.75:1); as text on paper it is 2.68:1 and fails AA,
+     so anything set in coral uses the deep tone (5.01:1). */
+  --coral: #ff6f61;
+  --coral-light: #ff9d91;
+  --coral-deep: #c4402f;
 
   /* Ground and ink */
   --paper: #f5f2ea;
@@ -20,15 +17,18 @@
   --ink-soft: #4a4640;
   --ink-faint: #8a847a;
 
-  /* Section colours. Components reference these, not the palette directly, so reassigning
-     a section is one line and stays consistent between its pill and its badge. */
-  --color-skills: var(--blue);
-  --color-experience: var(--orange);
-  --color-project: var(--green);
-  /* Foreground to place on each section fill, chosen per colour for contrast. */
-  --on-skills: var(--paper-card);
-  --on-experience: var(--ink);
-  --on-project: var(--paper-card);
+  /* Sections are told apart by a riso pattern, not by hue. Both tones are lighter than the
+     ink laid over them, so the worst case anywhere on a patterned block is 6.75:1. */
+  --pattern-hatch: repeating-linear-gradient(
+    45deg,
+    var(--coral-light) 0 3px,
+    transparent 3px 7px
+  );
+  --pattern-dots: radial-gradient(var(--coral-light) 1.5px, transparent 1.7px);
+  --pattern-dots-size: 7px 7px;
+
+  --color-section: var(--coral);
+  --on-section: var(--ink);
 
   /* Rules */
   --rule: 2px;

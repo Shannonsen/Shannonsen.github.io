@@ -6,7 +6,7 @@
 }
 
 .fluid-carousel:focus-visible {
-  outline: var(--rule-thick) solid var(--blue);
+  outline: var(--rule-thick) solid var(--coral-deep);
   outline-offset: 8px;
   border-radius: var(--radius);
 }
@@ -82,19 +82,23 @@
   margin-bottom: 1.1rem;
 }
 
-.fluid-carousel__badge.is-skills {
-  background: var(--color-skills);
-  color: var(--on-skills);
+.fluid-carousel__badge.is-skills,
+.fluid-carousel__badge.is-experience,
+.fluid-carousel__badge.is-project {
+  background-color: var(--color-section);
+  color: var(--on-section);
 }
 
+/* Skills stays solid. The diagonal hatch and the dots are deliberately left to antialias —
+   unlike the axis-aligned 1px rules of the graph paper, a hard diagonal or a hard-edged dot
+   looks jagged when snapped to the pixel grid. */
 .fluid-carousel__badge.is-experience {
-  background: var(--color-experience);
-  color: var(--on-experience);
+  background-image: var(--pattern-hatch);
 }
 
 .fluid-carousel__badge.is-project {
-  background: var(--color-project);
-  color: var(--on-project);
+  background-image: var(--pattern-dots);
+  background-size: var(--pattern-dots-size);
 }
 
 .fluid-carousel__title {
@@ -117,7 +121,7 @@
 .fluid-carousel__company {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--orange-deep);
+  color: var(--coral-deep);
   margin: 0.35rem 0 0;
 }
 
@@ -171,13 +175,13 @@
   gap: 0.35rem;
   margin-top: auto;
   padding-top: 1.25rem;
-  color: var(--blue);
+  color: var(--coral-deep);
   font-weight: 700;
   font-size: 0.92rem;
 }
 
 .fluid-carousel__link:hover {
-  color: var(--red);
+  color: var(--ink);
   text-decoration: underline;
 }
 
@@ -209,7 +213,7 @@
 }
 
 .fluid-carousel__arrow:hover {
-  background: var(--yellow);
+  background: var(--coral-light);
 }
 
 .fluid-carousel__arrow:active {
@@ -235,7 +239,7 @@
 }
 
 .fluid-carousel__dot:hover {
-  background: var(--yellow);
+  background: var(--coral-light);
 }
 
 .fluid-carousel__dot.is-selected {

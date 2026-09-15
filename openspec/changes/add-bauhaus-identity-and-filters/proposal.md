@@ -2,15 +2,15 @@
 
 The site has no visual point of view: it leans on the default indigo-to-purple gradient that
 ships with every React starter, soft shadows and rounded corners. Shannon wants a retro
-identity built on five colours — orange, blue, red, yellow, green — in a Bauhaus register:
-flat blocks, thick black rules, hard offset shadows, and a graph-paper ground.
+identity built on ink and coral in a Bauhaus register: flat blocks, thick black rules, hard
+offset shadows, and a graph-paper ground.
 
 Separately, the carousel now holds three kinds of content in one continuous run. A visitor who
 wants to see the projects has to drag past everything else. Section filters solve that.
 
 ## What Changes
 
-- Introduce a design-token layer (`src/styles/tokens.css`) defining the Bauhaus palette, the
+- Introduce a design-token layer (`src/styles/tokens.css`) defining ink, coral, the
   paper ground, the ink colour, rule weights and the hard-shadow offset. Every component
   references tokens instead of hard-coded hex values.
 - Replace the indigo/purple gradient identity everywhere: intro window, carousel, buttons,
@@ -20,8 +20,8 @@ wants to see the projects has to drag past everything else. Section filters solv
   shadows instead of blurred ones, flat fills instead of gradients.
 - Add a filter bar above the carousel with four pills — All, Skills, Experience, Projects.
   Selecting one narrows the carousel to that section's slides; All restores every slide.
-- Each section keeps a fixed colour throughout: Skills blue, Experience orange, Projects
-  green. Yellow and red carry accents and destructive/primary actions.
+- With one accent colour, sections are told apart by riso texture instead of hue: Skills
+  solid, Experience hatched, Projects dotted — the same in the pill and on the badge.
 - **BREAKING** (visual): the previous soft, rounded, gradient look is gone entirely.
 
 ## Capabilities
